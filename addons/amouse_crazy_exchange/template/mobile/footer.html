@@ -1,0 +1,10 @@
+<div class="footer">
+    <ul class="clearfix">
+        <!-- <li><a {if $_GPC['do']=='index'}class="on"{/if} href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('index',array('mid'=>pencode($fansid))), 2)}">大转盘</a></li>-->
+        <li><a {if $_GPC['do']=='egg'}class="on"{/if} href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('egg',array('mid'=>pencode($fansid))), 2)}">砸金蛋</a></li>
+        <li><a {if $_GPC['do']=='red'}class="on"{/if} href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('red',array('mid'=>pencode($fansid))), 2)}">抢红包</a></li>
+        <li><a {if $_GPC['do']=='shop'}class="on"{/if} href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('shop',array('mid'=>pencode($fansid))), 2)}">商城</a></li>
+        <li><a {if $_GPC['do']=='vip'}class="on"{/if} href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('vip',array('mid'=>pencode($fansid))), 2)}">代理佣金</a></li>
+       <li><a {if $_GPC['do']=='kefu'}class="on"{/if} href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('kefu',array('mid'=>pencode($fansid))), 2)}">客服</a></li>
+    </ul>
+</div>

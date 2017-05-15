@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.efwww.com" versionCode="0.6">
+	<application setting="false">
+		<name><![CDATA[疯狂互换]]></name>
+		<identifie><![CDATA[amouse_crazy_exchange]]></identifie>
+		<version><![CDATA[1.3.8]]></version>
+		<type><![CDATA[activity]]></type>
+		<ability><![CDATA[支付成功大转盘，支付成功抢红包，各种福利等你来领取]]></ability>
+		<description><![CDATA[支付成功大转盘，支付成功抢红包，各种福利等你来领取]]></description>
+		<author><![CDATA[易福源码网]]></author>
+		<url><![CDATA[http://www.efwww.com/]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+			<message type="click" />
+			<message type="text" />
+		</handles>
+		<rule embed="false" />
+		<card embed="false" />
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="活动入口" do="game" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="砸金蛋设置" do="egg" state="" direct="false" />
+			<entry title="抢红包设置" do="qhb" state="" direct="false" />
+			<entry title="大转盘设置" do="dzp" state="" direct="false" />
+			<entry title="红包领取记录" do="record" state="" direct="false" />
+			<entry title="系统参数设置" do="sysset" state="" direct="false" />
+			<entry title="订单记录" do="orders" state="" direct="false" />
+			<entry title="积分商城管理" do="shop" state="" direct="false" />
+			<entry title="幻灯片管理" do="slide" state="" direct="false" />
+			<entry title="会员管理" do="member" state="" direct="false" />
+		</menu>
+	</bindings>
+	<install><![CDATA[CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_creditshop_goods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) DEFAULT '0',
+  `displayorder` int(11) DEFAULT '0',
+  `title` varchar(255) DEFAULT '',
+  `thumb` varchar(255) DEFAULT '',
+  `price` decimal(10,2) DEFAULT '0.00',
+  `type` tinyint(3) DEFAULT '0',
+  `credit` int(11) DEFAULT '0',
+  `credit2` int(11) DEFAULT '0',
+  `money` decimal(10,2) DEFAULT '0.00',
+  `total` int(11) DEFAULT '0',
+  `totalday` int(11) DEFAULT '0',
+  `detail` text,
+  `status` tinyint(3) DEFAULT '0',
+  `vip` tinyint(3) DEFAULT '0',
+  `istop` tinyint(3) DEFAULT '0',
+  `isrecommand` tinyint(3) DEFAULT '0',
+  `createtime` int(11) DEFAULT '0',
+  `endtime` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_uniacid` (`uniacid`),
+  KEY `idx_endtime` (`endtime`),
+  KEY `idx_createtime` (`createtime`),
+  KEY `idx_status` (`status`),
+  KEY `idx_displayorder` (`displayorder`),
+  KEY `idx_istop` (`istop`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_creditshop_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) DEFAULT '0',
+  `phone` varchar(255) DEFAULT '',
+  `name` varchar(255) DEFAULT '' COMMENT '收货人',
+  `addr` varchar(255) DEFAULT '' COMMENT '收货地址',
+  `location_p` varchar(255) DEFAULT '' COMMENT '省',
+  `location_c` varchar(255) DEFAULT '' COMMENT '市',
+  `location_a` varchar(255) DEFAULT '' COMMENT '区',
+  `openid` varchar(255) DEFAULT '',
+  `goodsid` int(11) DEFAULT '0',
+  `fansid` int(11) DEFAULT '0',
+  `createtime` int(11) DEFAULT '0',
+  `status` tinyint(3) DEFAULT '0' COMMENT '0-未发货 1-已发货 3 取消',
+  `usetime` int(11) DEFAULT '0',
+  `express` varchar(255) DEFAULT '',
+  `expresscom` varchar(255) DEFAULT '',
+  `expresssn` varchar(255) DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `idx_uniacid` (`uniacid`),
+  KEY `idx_fansid` (`fansid`),
+  KEY `idx_goodsid` (`goodsid`),
+  KEY `idx_openid` (`openid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_lottery_sysset` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) DEFAULT '0',
+  `top_bg` varchar(100) DEFAULT '',
+  `bg` varchar(100) DEFAULT '',
+  `end_time` int(11) DEFAULT '0',
+  `sets` longtext,
+  `gundong` text,
+  `moneys` longtext,
+  `money_m_1` double DEFAULT '37.78',
+  `money_rate_1` double DEFAULT '0',
+  `money_m_2` double DEFAULT '4.99',
+  `money_rate_2` double DEFAULT '0',
+  `money_m_3` double DEFAULT '0',
+  `money_rate_3` double DEFAULT '0',
+  `money_m_4` double DEFAULT '0',
+  `money_rate_4` double DEFAULT '0',
+  `money_m_5` double DEFAULT '0',
+  `money_rate_5` double DEFAULT '0',
+  `money_m_6` double DEFAULT '0',
+  `money_rate_6` double DEFAULT '0',
+  `money_m_7` double DEFAULT '0',
+  `money_rate_7` double DEFAULT '0',
+  `money_m_8` double DEFAULT '0',
+  `money_rate_8` double DEFAULT '0',
+  `money_m_9` double DEFAULT '0',
+  `cashs` longtext,
+  `p_type` tinyint(2) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `indx_weid` (`uniacid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_member` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `openid` varchar(100) NOT NULL,
+  `from_user` varchar(100) NOT NULL,
+  `unionid` varchar(100) NOT NULL,
+  `nickname` varchar(100) NOT NULL,
+  `wechatno` varchar(200) NOT NULL COMMENT '微信号',
+  `mobile` varchar(13) NOT NULL COMMENT '手机号',
+  `sex` tinyint(1) NOT NULL DEFAULT '0',
+  `headimgurl` varchar(255) NOT NULL,
+  `svip` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `dzp_number` int(11) NOT NULL DEFAULT '0' COMMENT '大转盘次数',
+  `qhb_number` int(11) NOT NULL DEFAULT '0' COMMENT '抢红包次数',
+  `createtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `last_time` int(10) unsigned NOT NULL DEFAULT '0',
+  `totalnum` int(11) DEFAULT '0',
+  `credit1` decimal(10,2) unsigned NOT NULL,
+  `credit2` decimal(10,2) unsigned NOT NULL,
+  `uid` int(11) DEFAULT '0',
+  `ipcilent` varchar(20) DEFAULT '',
+  `forever` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0为未购买过VIP',
+  `ali` varchar(200) NOT NULL,
+  `ali_username` varchar(200) NOT NULL,
+  `money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '获得的总金额',
+  `tx_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '提现金额',
+  `wtx_money` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '未提现金额',
+  `user_status` int(1) NOT NULL DEFAULT '1' COMMENT '用户状态 1 正常，0拉黑',
+  `parent_id` varchar(100) NOT NULL COMMENT '上级_id',
+  PRIMARY KEY (`id`),
+  KEY `uniacid` (`uniacid`),
+  KEY `openid` (`openid`),
+  KEY `user_status` (`user_status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_money_record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `fansid` int(11) NOT NULL,
+  `money` decimal(10,2) NOT NULL COMMENT '提现金额',
+  `credit` tinyint(2) DEFAULT '0',
+  `status` tinyint(2) DEFAULT '0',
+  `ftype` tinyint(2) DEFAULT '0',
+  `ipcilent` varchar(20) DEFAULT '',
+  `openid` varchar(100) DEFAULT '',
+  `par_openid` varchar(100) DEFAULT '',
+  `module` varchar(100) NOT NULL DEFAULT '0',
+  `createtime` int(11) DEFAULT '0',
+  `remark` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_uniacid` (`uniacid`),
+  KEY `idx_fansid` (`fansid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_order` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uniacid` int(10) unsigned NOT NULL COMMENT '公众账号',
+  `openid` varchar(50) NOT NULL COMMENT '微信会员openID',
+  `nickname` varchar(20) NOT NULL COMMENT '用户昵称',
+  `uid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `typeid` int(10) unsigned DEFAULT '0' COMMENT '大转盘/抢红包ID',
+  `memberid` int(10) unsigned DEFAULT '0' COMMENT '会员ID',
+  `ordersn` varchar(20) NOT NULL COMMENT '订单编号',
+  `status` smallint(4) NOT NULL DEFAULT '0' COMMENT '0已提交,1为已付款,2为未付款',
+  `ispay` smallint(4) NOT NULL DEFAULT '0',
+  `paytype` tinyint(1) unsigned NOT NULL COMMENT '1为余额支付,2为支付宝,3为微信支付,4为定价返还',
+  `transid` varchar(100) NOT NULL COMMENT '微信订单号',
+  `price` decimal(10,2) DEFAULT NULL,
+  `wxnotify` varchar(200) DEFAULT NULL,
+  `notifytime` int(10) DEFAULT '0',
+  `from_user` varchar(50) NOT NULL COMMENT '微信会员openID',
+  `tid` varchar(128) NOT NULL,
+  `plid` bigint(11) unsigned NOT NULL,
+  `createtime` int(10) unsigned NOT NULL COMMENT '充值时间',
+  PRIMARY KEY (`id`),
+  KEY `uniacid` (`uniacid`),
+  KEY `openid` (`openid`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_poster_sysset` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) DEFAULT '0',
+  `bg` varchar(255) DEFAULT '',
+  `data` text,
+  `keyword` varchar(255) DEFAULT '',
+  `createtime` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_uniacid` (`uniacid`),
+  KEY `idx_createtime` (`createtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_promote_qr` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uniacid` int(3) NOT NULL,
+  `acid` int(3) NOT NULL,
+  `memberid` int(3) NOT NULL COMMENT '会员id',
+  `openid` varchar(100) NOT NULL COMMENT 'openid',
+  `sceneid` varchar(100) NOT NULL COMMENT 'sceneid',
+  `ticket` varchar(1000) NOT NULL COMMENT 'ticket',
+  `qr_img` varchar(500) NOT NULL COMMENT 'qrimg',
+  `url` varchar(1000) NOT NULL COMMENT 'url',
+  `status` int(1) NOT NULL COMMENT '默认状态',
+  `model` tinyint(1) DEFAULT '2',
+  `createtime` int(10) DEFAULT '0',
+  `media_id` varchar(220) DEFAULT NULL,
+  `media_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_redpacks_sysset` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) DEFAULT '0',
+  `apisec` text,
+  `appid` varchar(500) DEFAULT '',
+  `secret` varchar(500) DEFAULT '',
+  `mchid` varchar(100) DEFAULT '',
+  `password` varchar(255) DEFAULT '',
+  `wishing` varchar(255) DEFAULT '',
+  `createtime` int(11) DEFAULT '0',
+  `ip` varchar(20) DEFAULT '',
+  `tx_count` int(11) DEFAULT '0',
+  `send_name` varchar(255) DEFAULT '',
+  `act_name` varchar(255) DEFAULT '',
+  `remark` varchar(255) DEFAULT '',
+  `tx_money` decimal(10,2) DEFAULT '0.00',
+  `min_money` decimal(10,2) DEFAULT '0.00',
+  `max_money` decimal(10,2) DEFAULT '0.00',
+  `min_money1` decimal(10,2) DEFAULT '0.00',
+  `max_money1` decimal(10,2) DEFAULT '0.00',
+  `total_money` decimal(10,2) DEFAULT '0.00',
+  `tplid` varchar(255) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_uniacid` (`uniacid`),
+  KEY `idx_createtime` (`createtime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_slide` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uniacid` int(11) NOT NULL,
+  `displayorder` tinyint(5) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
+  `link` varchar(200) NOT NULL COMMENT '链接',
+  `img` varchar(250) DEFAULT '' COMMENT '图标',
+  `status` tinyint(1) unsigned NOT NULL,
+  `createtime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `weid` (`uniacid`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_amouse_exchange_sysset` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `acid` int(11) DEFAULT '0',
+  `oauthid` int(11) DEFAULT '0',
+  `start_time` int(11) DEFAULT '0',
+  `end_time` int(11) DEFAULT '0',
+  `gundong` text,
+  `iscash` tinyint(2) DEFAULT '0',
+  `sets` longtext,
+  PRIMARY KEY (`id`),
+  KEY `indx_weid` (`weid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+]]></install>
+	<uninstall><![CDATA[DROP TABLE IF EXISTS `ims_amouse_exchange_creditshop_goods`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_creditshop_log`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_lottery_sysset`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_member`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_money_record`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_order`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_poster_sysset`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_promote_qr`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_redpacks_sysset`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_slide`;
+DROP TABLE IF EXISTS `ims_amouse_exchange_sysset`;
+]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

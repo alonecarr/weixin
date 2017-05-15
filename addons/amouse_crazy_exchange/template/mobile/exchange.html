@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no">
+    <title>兑换记录</title>
+    <link rel="stylesheet" type="text/css" href="{RES}shop/reset.css">
+    <link rel="stylesheet" type="text/css" href="{RES}shop/media50px.min.css">
+    <link rel="stylesheet" type="text/css" href="{RES}shop/style.css">
+    <script src="{RES}js/jquery.js"></script>
+</head>
+
+<body style="background:#f0f0f0;">
+<div class="dhjl-hd">
+    <h4>兑换记录</h4>
+</div>
+<div class="dhjl-main">
+    <div class="dhjl-item" style="text-align: center;height: 1rem;line-height: 1rem;">
+        {if count($logs)>0}
+            {loop $logs $log}
+
+            {/loop}
+        {else}
+        目前无兑换记录
+        {/if}
+    </div>
+</div>
+<div class="dhjl-ft">
+    <a href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('shop',array('mid'=>pencode($fansid))), 2)}">返回商城</a>
+</div>
+</body>
+</html>

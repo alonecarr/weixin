@@ -1,0 +1,333 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="keywords" content="$_W['account']['name']微名片 二维码 {$member['realname']}的名片">
+    <meta name="description" content="Ta关注:{$member['myattention']},Ta在找:{$member['myfource']}"/>
+    <title>{$member['realname']}的名片</title>
+    <link rel="stylesheet" type="text/css" href="../addons/amouse_ecard/style/css/flytip.css">
+    <link rel="stylesheet" type="text/css" href="../addons/amouse_ecard/style/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../addons/amouse_ecard/style/css/simple-2-1.css">
+</head>
+
+<body class="card card-home">
+<div style="display:none;">
+    Ta在找:{$member['myfource']}
+</div>
+<!--#=start page-->
+<div class="card-page toggle-transition-1s namecard-page-relative">
+    <!--#=start column-->
+    <section class="home-column pb45">
+        <div class="home-inner">
+            <div class="home-box-banner">
+                <a href="{php echo $this->createMobileUrl('background',array('op'=>'list','wid'=>$from_user,'cid'=>$card['id'], 'id'=>$member['id']),true)}">
+                {if $card['bgimg']}
+                <img src="{$_W['attachurl']}{$card['bgimg']}?t=2015041301" data-bg="{$_W['attachurl']}{$card['bgimg']}?t=2015041301" class="home-pic vcardBg">
+                {else}
+                <img src="../addons/amouse_ecard/style/images/bg1.jpg?t=2015041301" data-bg="../addons/amouse_ecard/style/images/bg1.jpg?t=2015041301" class="home-pic vcardBg">
+                {/if}
+                </a>
+
+                <div class="home-ewm">
+                    <i class="ico-ewm js-ewm"></i>
+                </div>
+                <!--#=start stat-->
+                <ul class="home-box-stat">
+                    <li class="home-box-item"><a href="javascript:;"> <span class="item-round"><i class="ico-viewed"></i></span>
+                        <span class="home-number">{$card['view']}</span>
+                    </a></li>
+                    <li class="home-box-item">
+                        <a href="{php echo $this->createMobileUrl('likes',array('id'=>$member['id'],'cid'=>$card['id'],'wid'=>$from_user,'op'=>'list'),true)}">
+                            <span
+                            class="item-round"><i class="ico-hand"></i></span><span
+                            class="home-number info-number">{$card['zan']}</span>
+                    </a></li>
+                </ul>
+                <!--#=end stat-->
+            </div>
+            <div class="home-box-basic basicpad">
+                <a href="{php echo $this->createMobileUrl('info',array('id'=>$member['id'],'cid'=>$card['id'],'wid'=>$from_user,'op'=>'list'),true)}" id="showWxQrcode" class="content-item-anchor">
+                    <div class="home-avatar">
+                        {if $member['headimg']}
+                        {if substr($member['headimg'],0,9) == 'http://wx'}
+                        <img src="{$member['headimg']}" class="home-avatar-thumbnail avatarPic">
+                        {else}
+                        <img src="{$_W['attachurl']}{$member['headimg']}" class="home-avatar-thumbnail avatarPic">
+                        {/if}
+                        {else}
+                        <img src="../addons/amouse_ecard/style/images/header.png" class="home-avatar-thumbnail avatarPic">
+                        {/if}
+                    </div>
+                </a>
+
+                <h3 class="home-name">{$member['realname']}</h3>
+                <span class="home-text">{$member['department']}&nbsp; {$member['job']}</span>
+                <span class="home-text text-phone">{$member['mobile']}</span>
+                <a class="text-call" href="tel:{$member['mobile']}">
+                    <i class="ico-call"></i>一键拨号
+                </a>
+            </div>
+            <div class="home-box-basic">
+                <div class="text-rt">
+                    <h3 class="home-name">{$member['company']}</h3>
+                </div>
+                <a class="fovorite-item-link" href="javascript:;"><i class="ico-right"></i></a>
+            </div>
+            {if $member[weixin]}
+            <div class="home-box-basic">
+                <div class="home-box-row">
+                    <p class="row-absolute">
+                        <span class="vertical-m">微信：</span>
+                    </p>
+                    <span class="vertical-m">{$member[weixin]}</span>
+                </div>
+                <a class="fovorite-item-link" href="javascript:;"><i class="ico-right"></i></a>
+            </div>
+            {/if}
+
+
+            <ul class="fovorite-inner">
+                <li class="fovorite-inner-item">
+                    <div class="fovorite-inner-tit">最近收藏</div>
+                    <div class="fovorite-inner-box">
+                        {loop $renmai $list}
+                        <a class="fovorite-people"  href="{php echo $this->createMobileUrl('share',array('id'=>$list['id'], 'op'=>'renmai'),true)}">
+                            {if $list['headimg']}
+                            {if substr($list['headimg'],0,9) == 'http://wx'}
+                            <img src="{$list['headimg']}" class="fovorite-people-thumbnail">
+                            {else}
+                            <img src="{$_W['attachurl']}{$list['headimg']}" class="fovorite-people-thumbnail">
+                            {/if}
+                        </a>
+                        {else}
+                        <img src="../addons/amouse_ecard/style/images/header.png" class="fovorite-people-thumbnail"></a>
+                        {/if}
+                        {/loop}
+                    </div>
+                    <a class="fovorite-item-link" href="{php echo $this->createMobileUrl('Renmai',array('id'=>$member['id'], 'op'=>'list'),true)}">
+                        <i class="ico-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!--#=end column-->
+</div>
+<!--#=end page-->
+
+<div class="feature js-sharebox toggle-transition-1s">
+    <div class="feature-favor js-cfriend feature-w66">
+        <i class="ico-share"></i> <span class="vertical-m" id="collectBtnTx">收藏名片</span>
+    </div>
+    <div class="feature-more js-featureMore feature-w33"><i class="ico-more"></i> <span
+            class="vertical-m more-relative">更多<code class="dialog-num dialogNum"></code></span></div>
+</div>
+
+<div class="more-list-wrap js-moreList">
+    <div class="more-list">
+        <ul class="more-list-ul">
+            <li class="more-list-item more-avatar">
+                <a href="{php echo $this->createMobileUrl('info',array('id'=>$member['id'],'wid'=>$from_user,'cid'=>$card['id'],'op'=>'list'))}"  class="more-item-anchor vertical-m">
+                    <div class="more-avatar-thumb">
+                        {if $member['headimg']}
+                        {if substr($member['headimg'],0,9) == 'http://wx'}
+                        <img src="{$member['headimg']}" class="more-avatar-thumbnail">
+                        {else}
+                        <img src="{$_W['attachurl']}{$member['headimg']}" class="more-avatar-thumbnail">
+                        {/if}
+                        {else}
+                        <img src="../addons/amouse_ecard/style/images/header.png" class="more-avatar-thumbnail">
+                        {/if}
+                    </div>
+                    <span class="vertical-m">{$member['realname']}</span>
+                </a>
+            </li>
+
+            <li class="more-list-item btop">
+                <a href="{php echo $this->createMobileUrl('index',array('id'=>$member['id'],'wid'=>$from_user, 'op'=>'edit'),true)}" class="more-item-anchor">
+                    <span class="vertical-m">个人信息</span>
+                    <i class="icon-right"></i>
+                </a>
+            </li>
+            <li class="more-list-item btop mb10">
+                <a href="{php echo $this->createMobileUrl('privateSet',array('id'=>$member['id'],'wid'=>$from_user, 'op'=>'list'),true)}" class="more-item-anchor">
+                    <span class="vertical-m">隐私设置</span><i class="icon-right"></i></a>
+            </li>
+            <li class="more-list-item btop">
+                <a href="{php echo $this->createMobileUrl('Renmai',array('id'=>$member['id'],'wid'=>$from_user,'cid'=>$card['id'],'op'=>'list'),true)}"  class="more-item-anchor"><span class="vertical-m">我的人脉</span>
+                    <i class="icon-right"></i>
+                </a>
+            </li>
+            <li class="more-list-item btop mb10">
+                <a href="{php echo $this->createMobileUrl('recommed',array('id'=>$member['id'],'wid'=>$from_user,'cid'=>$card['id'],'op'=>'list'),true)}"
+                   class="more-item-anchor"><span class="vertical-m">推荐人脉</span><i
+                        class="icon-right"></i></a>
+            </li>
+
+            <li class="more-list-item btop">
+                <a href="{php echo $this->createMobileUrl('indexEdit',array('id'=>$member['id'],'wid'=>$from_user, 'op'=>'list', 'cid'=>$card['id']),true)}" class="more-item-anchor">
+                    <span class="vertical-m">编辑名片</span><i class="icon-right"></i>
+                </a>
+            </li>
+
+            <li class="more-list-item btop">
+                <a href="{php echo $this->createMobileUrl('selectTemplate',array('op'=>'list','wid'=>$from_user,'cid'=>$card['id'], 'id'=>$member['id']),true)}" class="more-item-anchor"><span
+                        class="vertical-m">更换模板</span><i class="icon-right"></i>
+                </a>
+            </li>
+            <li class="more-list-item btop">
+                <a href="{php echo $this->createMobileUrl('background',array('op'=>'list','wid'=>$from_user,'cid'=>$card['id'], 'id'=>$member['id']),true)}" class="more-item-anchor">
+                    <span class="vertical-m">更换背景</span><i class="icon-right"></i>
+                </a>
+            </li>
+
+            <li class="more-list-item btop mb10">
+                <a href="{php echo $this->createMobileUrl('music',array('id'=>$member['id'],'wid'=>$from_user,'cid'=>$card['id']),true)}" class="more-item-anchor">
+                <span  class="vertical-m">背景音乐 </span>
+                    <i class="icon-right"></i></a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="more-list-item item-back"><a href="javascript:;" class="more-item-anchor"><i class="ico-back"></i> <span
+            class="vertical-m">返 回</span></a></div>
+</div>
+
+<div class="sharetip sharetip-collect js-sharetip-collect"></div>
+<div class="sharetip sharetip-cfriend js-sharetip-cfriend">
+    <div class="shareBox">
+        <span class="shareBox-title">分享到：</span>
+
+        <div class="bdsharebuttonbox clearfix" data-tag="share_1">
+            <a class="bds_sqq" data-cmd="sqq">QQ好友</a>
+            <a class="bds_qzone" data-cmd="qzone">QQ空间</a>
+            <a class="bds_tsina" data-cmd="tsina">新浪微博</a>
+            <a class="bds_renren" data-cmd="renren">人人网</a>
+            <a class="bds_copy" data-link="">复制链接</a>
+            <a class="popup_more" data-cmd="more">更多</a>
+        </div>
+    </div>
+</div>
+
+<div class="ewmform js-ewmform">
+    <div class="ewmform-box">
+        <code class="ewmform-close js-ewmClose"></code>
+        <div class="ewmform-title">扫码收藏我的微名片</div>
+        <div class="ewmform-summary">
+            <!--<img class="ewm-thumbnail" id="ewmThumbnail"  data-src="../addons/amouse_ecard/data/{$member['id']}_zombieerweima{$_W['uniacid']}.png" >-->
+            <img class="ewm-thumbnail" id="ewmThumbnail" data-src="{php echo $this->getQRImage2($member['id']);}" src="{php echo $this->getQRImage2($member['id']);}">
+        </div>
+        <!--<div class="ewmform-des">长按二维码可让别二维码</div>-->
+    </div>
+</div>
+
+<div class="superMask" id="superMask"></div>
+<div class="sideNav-tip" id="sideNavTip"></div>
+<div class="wxQrcodeTip wxQrcodeTipMe" id="wxQrcodeTipMe"></div>
+<input id="isFocus" type="hidden" value="true" data-url="test"/>
+<input id="hasCollect" type="hidden" value="true"/>
+<input id="personId" type="hidden" value="{$member[id]}" />
+<input id="openId" type="hidden" value="{$from_user}" />
+<input id="focusUrl" type="hidden" value=""/>
+<input id="fromUrl" type="hidden" value=""/>
+<input id="isFirst" type="hidden" value=""/>
+<input id="showTip" type="hidden" value=""/>
+<input id="notWeixin" type="hidden" value=""/>
+<input id="fromScan" type="hidden" value=""/>
+<input id="isCom" type="hidden" value=""/>
+<input id="isSelf" type="hidden" value="true"/>
+
+<script src="../addons/amouse_ecard/style/js/jquery.1.11.1.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/flytip.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/vpopup.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/cookie.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/common.js?v=201504101043"></script>
+<input id="shareUrl" type="hidden" value="{$linkUrl}"/>
+<input id="shareCss" type="hidden" value="../addons/amouse_ecard/style/css/share.css?v=201504101043">
+<script>
+    var shareContent = {
+        bdText: '{$member['realname']}的微名片',
+        bdDesc: '公司:{$member['company']}\n　职位:{$member['job']}\n　详情请关注公众号“{$_W['account']['name']}”!',
+        bdUrl: "{$linkUrl}",
+        bdPic: "{$shareimg}",
+        onBeforeClick: function (cmd, config) {
+            if (cmd == 'sqq') {
+                config.bdDesc = config.bdText + '\n' + config.bdDesc;
+                config.bdDesc = null;
+                return config;
+            } else if (cmd == 'tsina') {
+                config.bdText = config.bdText + '\n' + config.bdDesc;
+                return config;
+            }
+
+        }
+    };
+    var PC = false;
+</script>
+<script src="../addons/amouse_ecard/style/js/share.js?v=201504101043"></script>
+<link rel="stylesheet" type="text/css" href="../addons/amouse_ecard/style/css/vpopup.css?v=20150413">
+<!--#start JS-->
+
+<script>
+    $(document).ready(function () {
+        var winH = $(window).height();
+        $(".card").height(winH);
+    });
+</script>
+{php echo register_jssdk(false);}
+<script type="text/javascript">
+    initShare();
+    function initShare(){
+        wx.ready(function () {
+            shareMeta = {
+                title: "{$member['realname']}的微名片",
+                desc: "公司:{$member['company']}\n职位:{$member['job']}\n点击查看更多信息",
+                link: "{$linkUrl}",
+                imgUrl: "{$shareimg}",
+                success: function(){
+
+                },
+                cancel: function(){
+                    // alert("分享失败，可能是网络问题，一会儿再试试？");
+                }
+            };
+            wx.onMenuShareTimeline(shareMeta);
+            wx.onMenuShareAppMessage(shareMeta);
+            wx.onMenuShareWeibo(shareMeta);
+            wx.onMenuShareQQ(shareMeta);
+            wx.onMenuShareQZone(shareMeta);
+        });
+    }
+
+</script>
+<!--#end JS-->
+<script>
+    $("link").each(function () {
+        var $this = $(this);
+        var url = $this.attr("href");
+        var ts = (new Date()).getTime();
+
+        $this.on("error", function () {
+            $this.attr("href", url + "?=" + ts);
+        });
+    });
+</script>
+
+<!--<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3363dc8e04aa36a7f96745f93058a892";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>-->
+
+{if (!empty($isbjyy))}
+<div class="musicBox play" id="musicBox"></div>
+<audio id="musicPlayer" loop src="{$musicUrl}" autoplay="autoplay" style="display:none;position:absolute;z-index:-11"></audio>
+{/if}
+</body>
+</html>

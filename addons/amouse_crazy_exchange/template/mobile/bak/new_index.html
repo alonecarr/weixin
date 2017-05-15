@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>红包分享</title>
+    <meta content="width=device-width,initial-scale=1,user-scalable=no" name="viewport">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 14px;
+            font-family: "微软雅黑";
+            background: #bf3f3c;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .id {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            color: #FFFFFF;
+            height: 25px;
+            line-height: 25px;
+        }
+
+        .top {
+            position: relative;
+            text-align: center;
+        }
+
+        .top .desc {
+            width: 60%;
+            position: absolute;
+            top: 15px;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: 90px auto;
+            color: #FFFFFF;
+        }
+
+        .content {
+            position: relative;
+            text-align: center;
+        }
+
+        .content .main {
+            width: 90%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: 300px auto;
+            background: #fcecd2;
+            height: 300px;
+            border-radius: 10px;
+        }
+
+        .main_top {
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            margin-top: 10px;
+            width: 90%;
+            margin-left: 5%;
+            border-bottom: 2px dashed #960f21;
+        }
+
+        .main_top p {
+            color: #555;
+        }
+
+        .main_top p span {
+            color: #fa9d3b;
+        }
+
+        .wwj_content {
+            width: 100%;
+            margin-left: 3%;
+            margin-top: 20px;
+        }
+
+        .wwj_content ul {
+            width: 100%;
+        }
+
+        .wwj_content ul li {
+            float: left;
+            width: 45%;
+            height: 80px;
+            margin-top: 10px;
+        }
+
+        .wwj_content ul li a {
+            color: #FFFFFF;
+            height: 80px;
+            line-height: 80px;
+        }
+
+        .wwj_content ul li a span {
+            color: #000;
+            font-size: 18px;
+        }
+
+        .wwj_agreement {
+            color: #000;
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        .content1 {
+            position: relative;
+            text-align: center;
+        }
+
+        .content1 .main {
+            width: 90%;
+            position: absolute;
+            top: 110px;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: 510px auto;
+            background: #fcecd2;
+            height: 200px;
+            border-radius: 10px;
+        }
+
+        .wwj_content1 {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .wwj_content1 li {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px dashed #fa9d3b;
+        }
+
+        .wwj_content1 li span {
+            display: block;
+        }
+
+        .wwj_content1 li .left {
+            float: left;
+            margin-left: 20px;
+        }
+
+        .wwj_content1 li .right {
+            float: right;
+            margin-right: 20px;
+        }
+
+        .footer {
+            width: 100%;
+            height: 40px;
+            position: fixed;
+            bottom: 0;
+            background: #333333;
+        }
+
+        .footer ul {
+            width: 90%;
+            margin-left: 5%;
+        }
+
+        .footer li {
+            float: left;
+            width: 25%;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .footer li a {
+            color: #FFFFFF;
+            font-size: 16px;
+        }
+
+        UL {
+            PADDING-RIGHT: 0px;
+            PADDING-LEFT: 0px;
+            LIST-STYLE-POSITION: outside;
+            PADDING-BOTTOM: 0px;
+            MARGIN: 0px;
+            PADDING-TOP: 0px;
+            LIST-STYLE-TYPE: none;
+            overflow: hidden;
+        }
+
+        #S_LIST LI {
+            width: 154px;
+            height: auto;
+            float: left;
+            padding: 0px;
+            margin: 0px;
+            list-style-image: none;
+            list-style-type: none;
+        }
+
+        #S_LIST A {
+            DISPLAY: block;
+            MARGIN: 0px;
+            WIDTH: 154px;
+            HEIGHT: auto;
+            TEXT-ALIGN: center;
+            padding-top: 3px;
+            padding-right: 0px;
+            padding-bottom: 3px;
+            padding-left: 0px;
+        }
+    </style>
+    <script src="{RES}js/jquery.js"></script>
+</head>
+
+<body>
+<div class="content">
+    <div class="main">
+        <div class="main_top">
+            <p>红包分享，精彩无限</p>
+            <div class="wwj_content">
+                <ul>
+                    {loop $list $item}
+                    {php $set= unserialize($item['sets'])}
+                    <li style="background:#0e7ebe;margin-left:1%;" onclick="ajax('{$item[id]}')">
+                        <a style="font-size:16px;">去支付<span style="color:red;">{$set['sys']['draw']}</span>元！</a></li>
+                    {/loop}
+                </ul>
+            </div>
+            <div style="height:60px;line-height:60px;width:100%;color:#555;clear:both;" class="agreement">支付即表示您同意
+                <span class="wwj_agreement"><a href="{$set['sys']['xieyi']}">【红包分享协议】</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content1">
+    <div class="main">
+        <div class="main_top">
+            <p>游戏规则介绍</p>
+            <div class="wwj_content1">
+                <p>{$set['sys']['rule']}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer" style="">
+    <ul>
+        <li><a class="on" href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('index',array('mid'=>pencode($fansid))), 2)}">转赚盘</a></li>
+        <li><a href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('red',array('mid'=>pencode($fansid))), 2)}">抢红包</a></li>
+        <li><a href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('vip',array('mid'=>pencode($fansid))), 2)}">VIP代理</a></li>
+        <li><a href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('kefu',array('mid'=>pencode($fansid))), 2)}">在线客服</a></li>
+
+    </ul>
+</div>
+
+<div style="position:absolute; width:100%; height:99%; z-index:-1">
+    <img src="{RES}images/13.png" height="95%" width="100%"/>
+</div>
+</body>
+<script>
+    function ajax(id) {
+        window.location.href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('gotopay',array('mid'=>pencode($fansid))), 2)}&gid="+id;
+    }
+</script>
+</html>

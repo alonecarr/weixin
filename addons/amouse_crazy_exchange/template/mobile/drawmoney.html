@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>用户提现</title>
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.0.1/weui.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="{RES}css/common.css?2016101715"/>
+    <script>
+        $(function () {
+            $("body").on("click", "#draw_btn", function () {
+
+                mobile = "";
+                if($("#mobile").length>0){
+                    mobile = parseInt($("#mobile").val());
+                    phone = /^1([38]\d|4[57]|5[0-35-9]|7[06-8])\d{8}$/;
+                    if(!phone.test(mobile)){
+                        alert("对不起，手机号码是发放佣金的凭证，请正确填写！");
+                        return false;
+                    }
+                }
+
+                if(confirm("确定要提出所有金额吗?")){
+                    $(this).attr("disabled", true);
+                    drawmoney = parseInt($("#use_money").html());
+                    if (drawmoney >= 1) {
+                        $.ajax({
+                            type: 'POST',
+                            url: "/drawmoney/save/",
+                            data: 'money='+drawmoney+"&m="+mobile,
+                            dataType: 'json',
+                            success: function (_data) {
+                                if (_data.code == 1) {
+                                    $("#use_money").val(0);
+                                    $("#use_money2").html("0元");
+                                    alert("提现成功,已发送到的微信钱包,请查收！");
+                                    location.href="/drawmoney/index/?"+parseInt(100000*Math.random());
+                                }
+                                else {
+                                    alert(_data.message);
+                                    location.href="/drawmoney/index/?"+parseInt(100000*Math.random());
+                                }
+
+                            }
+                        });
+                    } else {
+                        alert("每次提现必须大于1元！");
+                        return false;
+                    }
+                }
+
+            })
+
+        });
+    </script>
+    <style>
+        body {
+            background: #EBEBEB;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color:#61749B;
+        }
+
+        ins, a {
+            text-decoration: none;
+            color:#61749B;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto 0;
+
+            color: #666;
+            font-size: 14px;
+        }
+
+        .notice {
+            font-size: 14px;
+            font-weight: normal;
+            height: 40px;
+            line-height: 20px;
+            margin-top: 20px;;
+        }
+
+        .info {
+            background: #FCFCFC;
+            margin: 20px 0px 0px 0;
+        }
+        .weui-icon-warn:before{
+            font-size: 18px;;
+        }
+        .notice .weui-icon-warn:before
+        {
+            color:#FFBE00;
+            font-size: 14px
+        }
+        .weui-btn_warn {
+            background-color: #96c;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="header">
+    <div id="header_oval"></div>
+    <div id="header_memb">ID：{$fansid}</div>
+    <div id="header_title">畅享互换 精彩无限<br><span id="header_title_small">微信安全支付</span></div>
+</div>
+<div class="container" id="container">
+    <p class="notice"><i class="weui-icon-warn weui-icon_msg-primary"></i>&nbsp;友情提示：由于微信限制，每天可以提现3次(剩余<font color="#FF9900">3</font>次)，并且每次提现必须大于1元。</p>
+    <div class="info">
+        <div class="weui-cell">
+            <div class="weui-cell__bd weui_cell_primary">
+                <p>可提佣金</p>
+            </div>
+            <div class="weui_cell_ft"><span class="use_money" id="use_money">{$money}</span>元</div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd  weui_cell_primary"><label class="weui_label">提现金额</label></div>
+            <div class="weui_cell_ft"><span class="use_money" id="use_money2">小于{$set['sys']['drawmoney']}元暂不可提现</span></div>
+        </div>
+    </div>
+    <div class="weui_opr_area">
+        <p class="weui_btn_area">
+            <a href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('index',array('mid'=>pencode($fansid))), 2)}" class="weui-btn weui-btn_default" >继续游戏</a>
+        </p>
+    </div>
+
+</div>
+
+<style>
+    .top_message{
+        position: fixed;
+        top:0;
+        width:100%;
+        left: 0;
+        height: 25px;
+        line-height: 25px;
+        z-index: 888;
+        color:#FFF;
+        background: rgba(80, 80, 80, 0.6);
+        text-align: center;
+    }
+    .top_message .message_type{
+        display: inline-block;
+        font-size: 11px;
+        border-radius: 2px;
+        margin: 5px 10px 0;
+        border: 1px solid #f99090;
+        padding: 0 8px;
+        height: 15px;
+        line-height: 15px;
+        color: #FFCCCC;
+    }
+    .top_message .message_info{
+        display: inline-block;
+        font-size: 11px;
+    }
+</style>
+<div class="top_message" style="display: none">
+    <p  style="display: none">
+        <span class="message_type"></span>
+        <span class="message_info"></span>
+    </p>
+</div>
+</body>
+<script type="text/javascript">
+    eval(function(d,e,a,c,b,f){b=function(a){return(a<e?"":b(parseInt(a/e)))+(35<(a%=e)?String.fromCharCode(a+29):a.toString(36))};if(!"".replace(/^/,String)){for(;a--;)f[b(a)]=c[a]||b(a);c=[function(a){return f[a]}];b=function(){return"\\w+"};a=1}for(;a--;)c[a]&&(d=d.replace(new RegExp("\\b"+b(a)+"\\b","g"),c[a]));return d}('4 C(){3 a="16";3 b="";g(3 i=0;i<5;i++){v=2.e(2.d()*a.t);b+=a[v]}3 c=2.e(2.d()*w);9(c<10){c="0"+11(c)}7 b+c}4 D(){6=[];g(3 i=G;i>10;i--){6[G-i]=i}7 6}4 I(){6=[];6[K]=w;6[W]=u;6[S]=R;6[Q]=O;7 6}4 j(a){l=\'\';o=B(a);g(3 b y a){q=a[b];E=2.e(2.d()*o+1);9(E<=q){l=b;N}h{o-=q}}7(l+2.e(2.d()*H))/H}4 B(a){3 n=0;g(3 k y a){n+=a[k]}7 n}4 M(a,n){3 b=a.L().t;X(b<n){a="0"+a;b++}7 a}4 J(){p=C();3 m=j(D());9(m>=P){x=j(I());f="\u540a\u70b8\u5929";8="\u606d\u559c\u7528\u6237["+p+"]\u83b7\u5f97\u989d\u5916\u5956\u52b1"+T(x)+"\u5143"}h 9(m>u){f="\u7206\u53d1";8="\u606d\u559c\u7528\u6237["+p+"]\u5f00\u542f\u7ea2\u5305"+m+"\u5143"}h 9(m>U){f="\u597d\u8fd0";8="\u606d\u559c\u7528\u6237["+p+"]\u5f00\u542f\u7ea2\u5305"+m+"\u5143"}h{7 V}7[f,8]}4 r(){8=J();9(8){$(".s").Y();$(".s p").Z("z",4(){$(".12").F(8[0]);$(".13").F(8[1]);$(14).15("z")})}A=2.e(2.d()*17)+18;19("r()",A)}r();',
+            62,72,"  Math var function  gailv return message if    random floor type for else  getRandResult  result   proSum  proCur lunbo top_message length 50 randnum 60 jl in slow rtime getSum getUsername createArr randNum html 150 100 createArr2 getMessage 555 toString pad break 20 120 888 40 777 parseInt 25 false 666 while show slideUp  String message_type message_info this slideDown QWERTYUIOPASDFGHJKLZXCVBNM 5000 3000 setTimeout".split(" "),0,{}));
+</script>
+
+<script type="text/javascript">
+    var touchPageYStart=0;try{if($.isFunction(eval(etouch))){var touch=etouch}}catch(e){var touch=function(event){var event=event||window.event;var eot=event.touches[0];switch(event.type){case"touchstart":touchPageYStart=eot.clientY;break;case"touchend":break;case"touchmove":var stTmp=$("body").scrollTop();$("body").scrollTop(stTmp+(touchPageYStart-eot.clientY));touchPageYStart=eot.clientY;event.preventDefault();break}}}document.addEventListener("touchstart",touch,false);document.addEventListener("touchend",touch,false);document.addEventListener("touchmove",touch,false);
+</script>
+
+</body>
+</html>

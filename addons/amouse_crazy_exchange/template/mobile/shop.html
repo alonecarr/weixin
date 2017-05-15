@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no">
+    <title>积分商城</title>
+    <link rel="stylesheet" type="text/css" href="{RES}shop/reset.css">
+    <link rel="stylesheet" type="text/css" href="{RES}shop/media50px.min.css">
+    <link rel="stylesheet" type="text/css" href="{RES}css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" type="text/css" href="{RES}shop/style.css">
+    <script src="{RES}js/jquery.js"></script>
+    <script src="{RES}js/swiper-3.3.1.jquery.min.js"></script>
+</head>
+
+<body style="background:#ffffff;">
+<div class="mall-hd">积分商城</div>
+<div class="picshow">
+    <div class="swiper-container fullsilde">
+        <div class="swiper-wrapper">
+            {loop $slides $slide}
+            <div class="swiper-slide"><a><img src="{php echo strpos($slide['img'],'http://')===FALSE?(tomedia($slide['img'])):$slide['img']}" /></a></div>
+            <!--<div class="swiper-slide"><a><img src="http://8224666.com:1111/shop/images/banner2.jpg" /></a></div>
+            <div class="swiper-slide"><a><img src="http://8224666.com:1111/shop/images/banner3.jpg" /></a></div>-->
+            {/loop}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <script>
+        var swiper1 = new Swiper('.fullsilde', {
+            pagination: '.swiper-pagination',
+            autoplay : 5000,
+            paginationClickable: true
+        });
+    </script>
+</div>
+<div class="userbox">
+    <p><span>会员ID：</span>{$fansid}</p>
+    <p><span>我的积分：</span>{$mycredit}</p>
+    <a class="jlbtn" href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('exchange',array('mid'=>pencode($fansid))), 2)}">兑换记录</a>
+</div>
+<div class="pro-list">
+    <h5>积分兑换</h5>
+    <ul class="clearfix">
+        {loop $list $item}
+        <li>
+            <a href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('detail',array('mid'=>pencode($fansid),'gid'=>$item['id'])), 2)}">
+                <img src="{php echo strpos($item['thumb'],'http://')===FALSE?(tomedia($item['thumb'])):$item['thumb']}" />
+                <h6>{$item['title']}</h6>
+                <span class="dhjf-txt">{$item['credit']} 积分</span>
+                <!-- <span class="dhjf-num">100人已兑换</span> -->
+                <span class="dhbtn">去兑换</span>
+            </a>
+        </li>
+        {/loop}
+        <!--<li>
+            <a href="item.php?pro=2">
+                <img src="http://8224666.com:1111/shop/images/pro2.jpg" />
+                <h6>特级铁观音中份 YP150</h6>
+                <span class="dhjf-txt">1288 积分</span>
+                &lt;!&ndash; <span class="dhjf-num">100人已兑换</span> &ndash;&gt;
+                <span class="dhbtn">去兑换</span>
+            </a>
+        </li>
+        <li>
+            <a href="item.php?pro=3">
+                <img src="http://8224666.com:1111/shop/images/pro3.jpg" />
+                <h6>特级铁观音大份 YP180</h6>
+                <span class="dhjf-txt">1488 积分</span>
+                &lt;!&ndash; <span class="dhjf-num">100人已兑换</span> &ndash;&gt;
+                <span class="dhbtn">去兑换</span>
+            </a>
+        </li>-->
+    </ul>
+</div>
+
+
+{template 'footer'}
+
+<link rel="stylesheet" href="{RES}css/weui.css"/>
+<script src="{RES}js/jweixin-1.0.0.js" language="javascript" type="text/javascript"></script>
+<!--showMsg -->
+<div class="weui_dialog_alert" style="display:none;">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">提 示</strong></div>
+        <div class="weui_dialog_bd"></div>
+        <div class="weui_dialog_ft">
+            <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(".weui_btn_dialog").click(function(){
+        $(".weui_dialog_alert").hide();
+        location.reload();
+    });
+</script>
+<script>
+    //触屏--------------------------
+    var touchPageYStart = 0;
+    try{
+        if($.isFunction(eval(etouch))){
+            var touch = etouch;
+        }
+    }catch(e){
+        var touch = function (event){
+            var event = event || window.event;
+            var eot = event.touches[0];
+            switch(event.type){
+                case "touchstart":
+                    touchPageYStart = eot.clientY;
+                    break;
+                case "touchend":
+                    break;
+                case "touchmove":
+                    var stTmp = $("body").scrollTop();
+                    $("body").scrollTop(stTmp + (touchPageYStart - eot.clientY));
+                    touchPageYStart = eot.clientY;
+                    event.preventDefault();
+                    break;
+            }
+        }
+    }
+    document.addEventListener('touchstart',touch, false);
+    document.addEventListener('touchend',touch, false);
+    document.addEventListener('touchmove',touch, false);
+    function onBridgeReady(){
+        WeixinJSBridge.call('hideOptionMenu');
+    }
+
+    if (typeof WeixinJSBridge == "undefined"){
+        if( document.addEventListener ){
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        }else if (document.attachEvent){
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    }else{
+        onBridgeReady();
+    }
+</script>
+
+
+</body>
+</html>

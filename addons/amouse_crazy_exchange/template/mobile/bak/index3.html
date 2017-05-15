@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>精彩互换 精彩无限</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <script src="http://www.3hofs.com/Public/js/jquery-2.1.1.min.js"></script>
+    <script src="http://www.3hofs.com/Public/js/swiper-3.3.1.jquery.min.js"></script>
+    <link href="http://www.3hofs.com/Public/css/base.css" rel="stylesheet" type="text/css">
+    <link href="http://www.3hofs.com/Public/Wap/css/index.css?v=83" rel="stylesheet" type="text/css">
+    <link href="http://www.3hofs.com/Public/Wap/css/head.css" rel="stylesheet" type="text/css">
+    <link href="http://www.3hofs.com/Public/css/swiper.min.css" rel="stylesheet" type="text/css">
+    <style></style>
+    <script>
+        $(document).ready(function () {  });
+    </script>
+</head>
+<body>
+<section class="container">
+    <div class="container-hd">
+        <figrue class="figure"><img src="http://www.3hofs.com/Public/Wap/img/banner-index.jpg" alt="" /></figrue>
+        <div class="container-hd_text"> <i class="i i-text i-text_left"></i> <i class="i i-text i-text_right"></i> </div>
+        <i class="i-lantern i-lantern_left"></i> <i class="i-lantern i-lantern_right"></i>
+        <div class="fireworks"> <i class="i-firework"></i> <i class="i-firework"></i> </div>
+        <i class="i i-character bounceIn floatUpDown"></i> </div>
+</section>
+
+<div class="index1 clearfix">
+    <div class="hblist">
+        <ul>
+            <a href="/index.php?m=Wap&c=Index&a=pay&hbid=1">
+                <li><img src="http://www.3hofs.com/Public/Wap/img/4.png">
+                    <p>支付<font class="price">10</font>元<br>
+                        <font color="#ec0912">抢1~200元</font></p>
+                </li>
+            </a><a href="/index.php?m=Wap&c=Index&a=pay&hbid=2">
+            <li><img src="http://www.3hofs.com/Public/Wap/img/4.png">
+                <p>支付<font class="price">20</font>元<br>
+                    <font color="#ec0912">抢1~600元</font></p>
+            </li>
+        </a><a href="/index.php?m=Wap&c=Index&a=pay&hbid=3">
+            <li><img src="http://www.3hofs.com/Public/Wap/img/4.png">
+                <p>支付<font class="price">50</font>元<br>
+                    <font color="#ec0912">抢1~800元</font></p>
+            </li>
+        </a><a href="/index.php?m=Wap&c=Index&a=pay&hbid=4">
+            <li><img src="http://www.3hofs.com/Public/Wap/img/4.png">
+                <p>支付<font class="price">100</font>元<br>
+                    <font color="#ec0912">抢1~1800元</font></p>
+            </li>
+        </a>    </ul>
+    </div>
+</div>
+﻿<script>
+    $(document).ready(function () {
+        $(function(){
+            if( String(location).indexOf("Wap&c=Index&a=index") == -1 && String(location).indexOf("Wap&c=Index&a=hb") == -1 ){
+                $.post("/index.php?m=Wap&c=Ajax&a=qiangzhichai",{},function(res){
+                    if(res.code==1){
+                        alert('请先拆红包');
+                        $.post("/index.php?m=Wap&c=Ajax&a=gethbid",{hbid:0},function(res){
+                            location.href='/index.php?m=Wap&c=Index&a=hb&hbid='+res.hbid;
+                        },'json');
+                    }
+                },'json');
+            }
+
+        });
+        $('#qianghongbao').click(function(){
+            $.post("/index.php?m=Wap&c=Ajax&a=gethbid",{hbid:0},function(res){
+                location.href='/index.php?m=Wap&c=Index&a=hb&hbid='+res.hbid;
+            },'json');
+        });
+        $('#checkdaili').click(function(){
+            $.post("/index.php?m=Wap&c=Ajax&a=checkdaili",{},function(res){
+                if(res.code == 0){
+                    location.href='/index.php?m=Wap&c=Index&a=kefu';
+                } else {
+                    location.href='/index.php?m=Wap&c=Index&a=daili';
+                }
+            },'json');
+        });
+        $('.msgbox .but').click(function(){
+            $('.msgbox').hide();
+        });
+    });
+</script>
+
+<div class="msgbox">
+    <div class="box">
+        <p class="title">提示</p>
+        <p class="txt">恭喜您获得0元红包</p>
+        <p class="but">确定</p>
+    </div>
+</div>
+
+<div style="height:60px;"></div>
+<div class="footer">
+    <ul>
+        <li><a href="/index.php?m=Wap&c=Index&a=index">去支付</a></li>
+        <li id="qianghongbao">抢红包</li>
+        <li><a href="/index.php?m=Wap&c=Index&a=yongjin">佣金</a></li>
+        <li id="checkdaili">代理</li>
+        <li><a href="/index.php?m=Wap&c=Index&a=kefu">客服</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+    <meta name="keywords" content="$_W['account']['name']微名片 二维码 {$member['realname']}的名片">
+    <meta name="description" content="Ta关注:{$member['myattention']},Ta在找:{$member['myfource']}"/>
+    <title>{$member['realname']}的名片</title>
+    <link rel="stylesheet" type="text/css" href="../addons/amouse_ecard/style/css/flytip.css?v=20150413">
+    <link rel="stylesheet" type="text/css" href="../addons/amouse_ecard/style/css/common.css?v=201504101043j">
+    <link rel="stylesheet" type="text/css" href="../addons/amouse_ecard/style/css/simple-1.css?v=201504101044j">
+</head>
+
+<body class="card card-home" style="">
+<div style="display:none;">
+    Ta在找:{$member['myfource']}
+</div>
+<!--#=start page-->
+<div class="card-page toggle-transition-1s namecard-page-relative">
+    <!--#=start column-->
+    <section class="home-column pb45">
+        <div class="home-inner">
+            <div class="home-inner-title"><p class="comp">{$member['company']}</p>
+
+                <p class="comp">{$member['department']}</p>
+            </div>
+            <div class="home-box-basic">
+                <a href="javascript:;" id="showWxQrcode" class="content-item-anchor">
+                    <div class="home-avatar">
+                        {if $member['headimg']}
+                        {if substr($member['headimg'],0,9) == 'http://wx'}
+                        <img src="{$member['headimg']}" class="home-avatar-thumbnail avatarPic">
+                        {else}
+                        <img src="{$_W['attachurl']}{$member['headimg']}" class="home-avatar-thumbnail avatarPic">
+                        {/if}
+                        {else}
+                        <img src="../addons/amouse_ecard/style/images/header.png"
+                             class="home-avatar-thumbnail avatarPic">
+                        {/if}
+                    </div>
+                </a>
+
+                <div class="home-ewm">
+                    <i class="icon-ewm js-ewm"></i>
+                </div>
+                <div class="home-contact-box">
+                    <div class="home-contact-name">
+                        <h3 class="home-name">{$member['realname']}</h3>
+                    </div>
+                    <div class="home-contact-post">
+                        <span class="home-contact-text">{$member['job']}</span>
+                        <span class="home-contact-text text-phone">{$member['mobile']}</span>
+                        <a class="home-contact-text text-call" href="tel:{$member['mobile']}">
+                            <i class="ico-call"></i>一键拨号</a>
+                    </div>
+                </div>
+                {if $member[weixin]}
+                <div class="home-text-box">
+                    <div class="home-box-row">
+                        <p class="row-absolute">
+                            <span class="vertical-m">微信：</span>
+                        </p>
+                        <span class="vertical-m">{$member[weixin]}</span>
+                    </div>
+                </div>
+                {/if}
+            </div>
+
+            <p class="line"></p>
+            <ul class="fovorite-inner">
+                <li class="fovorite-inner-item">
+                    <div class="fovorite-inner-tit">最近收藏</div>
+                    <div class="fovorite-inner-box">
+                        {loop $renmai $list}
+                        <a class="fovorite-people" href="{php echo $this->createMobileUrl('share',array('id'=>$list['id'], 'op'=>'renmai'),true)}">
+                            {if $list['headimg']}
+                            {if substr($list['headimg'],0,9) == 'http://wx'}
+                            <img src="{$list['headimg']}" class="fovorite-people-thumbnail">
+                            {else}
+                            <img src="{$_W['attachurl']}{$list['headimg']}" class="fovorite-people-thumbnail">
+                            {/if}
+                        </a>
+                        {else}
+                        <img src="../addons/amouse_ecard/style/images/header.png" class="fovorite-people-thumbnail"></a>
+                        {/if}
+                        {/loop}
+                    </div>
+                    <a class="fovorite-item-link" href="{php echo $this->createMobileUrl('Renmai',array('id'=>$member['id'], 'op'=>'list'),true)}">
+                        <i class="icon-right"></i></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!--#=end column-->
+</div>
+<div class="cardBg">
+    {if $card['bgimg']}
+    <img src="{$_W['attachurl']}{$card['bgimg']}?t=2015041301" data-bg="{$_W['attachurl']}{$card['bgimg']}?t=2015041301" class="vcardBg">
+    {else}
+    <img src="../addons/amouse_ecard/style/images/bg1.jpg?t=2015041301" data-bg="../addons/amouse_ecard/style/images/bg1.jpg?t=2015041301" class="vcardBg">
+    {/if}
+</div>
+
+<!--#=start stat-->
+<ul class="home-box-stat">
+    <li class="home-box-item" id="jsClickLike">
+        <a href="{php echo $this->createMobileUrl('likes',array('id'=>$member['id'],'cid'=>$card['id'],'wid'=>$from_user,'op'=>'list'),true)}">
+            <i class="ico-hand"></i>
+            <span class="home-number info-number">{$card['zan']}</span>
+        </a>
+    </li>
+    <li class="home-box-item">
+        <a href="{php echo $this->createMobileUrl('renmai',array('id'=>$member['id'], 'op'=>'list','wid'=>$from_user),true)}">
+        <i class="ico-network"></i> <span class="home-number">{$renmaicount}</span>
+    </a></li>
+    <li class="home-box-item"><a href="javascript:;">
+        <i class="ico-viewed"></i> <span
+            class="home-number">{$card['view']}</span>
+    </a></li>
+</ul>
+<!--#=end stat-->
+
+<!--#=end page-->
+<div class="feature js-sharebox toggle-transition-1s">
+    <a onclick="collectAjax();">
+        <div class="feature-favor  feature-w66" style="width:30%">
+            <i class="ico-favor"></i> <span class="vertical-m">收藏TA</span>
+        </div>
+    </a>
+    {if $ismember}
+    <div class="feature-favor  feature-w66" style="width:40%">
+        <a href="{php echo $this->createMobileUrl('index',array('op'=>'list','wid'=>$member['openid'],'cid'=>$card['id']),true)}">
+            <i class="ico-home"></i> <span class="vertical-m">我的微名片</span>
+        </a>
+    </div>
+    {else}
+    <div class="feature-favor  feature-w66" style="width:40%">
+        <!--<a href="{php echo $this->createMobileUrl('getOne',array('id'=>$member['id'],'wid'=>$member['openid'],'cid'=>$card['id']),true)}">-->
+        <a href="{$guanzhuUrl}">
+            <i class="ico-card"></i><span class="vertical-m">我也要一个</span>
+        </a>
+    </div>
+    {/if}
+    <div class="feature-more js-featureMore feature-w33"><i class="ico-more"></i>
+        <span class="vertical-m">更多</span>
+    </div>
+</div>
+<div class="more-list-wrap js-moreList">
+    <div class="more-list">
+        <ul class="more-list-ul">
+            <li class="more-list-item btop"><a onclick="collectAjax()" class="more-item-anchor"><span
+                    class="vertical-m">收藏TA</span><i class="icon-right"></i></a></li>
+            <li class="more-list-item btop"><a href="{$guanzhuUrl}" class="more-item-anchor"><span class="vertical-m">操作教程</span><i
+                    class="icon-right"></i></a></li>
+        </ul>
+    </div>
+    <div class="more-list-item item-back"><a href="javascript:;" class="more-item-anchor"><i class="ico-back"></i> <span
+            class="vertical-m">返 回</span></a></div>
+</div>
+
+
+<div class="sharetip sharetip-collect js-sharetip-collect"></div>
+<div class="sharetip sharetip-cfriend js-sharetip-cfriend">
+    <div class="shareBox">
+        <span class="shareBox-title">分享到：</span>
+        <div class="bdsharebuttonbox clearfix" data-tag="share_1">
+            <a class="bds_sqq" data-cmd="sqq">QQ好友</a>
+            <a class="bds_qzone" data-cmd="qzone">QQ空间</a>
+            <a class="bds_tsina" data-cmd="tsina">新浪微博</a>
+            <a class="bds_renren" data-cmd="renren">人人网</a>
+            <a class="bds_copy" data-link="">复制链接</a>
+            <a class="popup_more" data-cmd="more">更多</a>
+        </div>
+    </div>
+</div>
+
+<div class="ewmform js-ewmform">
+    <div class="ewmform-box">
+        <code class="ewmform-close js-ewmClose"></code>
+        <div class="ewmform-title">扫码收藏我的微名片</div>
+        <div class="ewmform-summary">
+ <img class="ewm-thumbnail" id="ewmThumbnail" data-src="{php echo $this->getQRImage2($member['id']);}">
+            <!--data-src="../addons/amouse_ecard/data/{$member['id']}_zombieerweima{$_W['uniacid']}.png"-->
+        </div>
+        <div class="ewmform-des">长按二维码可识别二维码</div>
+    </div>
+</div>
+
+<div class="superMask" id="superMask"></div>
+<div class="sideNav-tip" id="sideNavTip"></div>
+<div class="wxQrcodeTip wxQrcodeTipMe" id="wxQrcodeTipMe"></div>
+<input id="isFocus" type="hidden" value="true" data-url="test"/>
+<input id="hasCollect" type="hidden" value="true"/>
+<input id="personId" type="hidden" value="{$member[id]}" />
+<input id="openId" type="hidden" value="{$from_user}" />
+<input id="focusUrl" type="hidden" value=""/>
+<input id="fromUrl" type="hidden" value=""/>
+<input id="isFirst" type="hidden" value=""/>
+<input id="showTip" type="hidden" value=""/>
+<input id="notWeixin" type="hidden" value=""/>
+<input id="fromScan" type="hidden" value=""/>
+<input id="isCom" type="hidden" value=""/>
+<input id="isSelf" type="hidden" value="true"/>
+<input type="hidden" name="mid" id="mid" value="{$member['id']}">
+<input type="hidden" name="cid" id="cid" value="{$card['id']}">
+<script src="../addons/amouse_ecard/style/js/jquery.1.11.1.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/flytip.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/vpopup.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/cookie.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/common.js?v=201504101043"></script>
+<input id="shareUrl" type="hidden" value="{$linkUrl}"/>
+<input id="shareCss" type="hidden" value="../addons/amouse_ecard/style/css/share.css?v=201504101043">
+<script>
+    var shareContent = {
+        bdText: '{$member['realname']}的微名片',
+        bdDesc: '公司:{$member['company']}\n　职位:{$member['job']}\n　详情请关注公众号“{$_W['account']['name']}”!',
+        bdUrl: "{$linkUrl}",
+        bdPic: "{$shareimg}",
+        onBeforeClick: function (cmd, config) {
+            if (cmd == 'sqq') {
+                config.bdDesc = config.bdText + '\n' + config.bdDesc;
+                config.bdDesc = null;
+                return config;
+            } else if (cmd == 'tsina') {
+                config.bdText = config.bdText + '\n' + config.bdDesc;
+                return config;
+            }
+
+        }
+    };
+    var PC = false;
+</script>
+<script src="../addons/amouse_ecard/style/js/share.js?v=201504101043"></script>
+<link rel="stylesheet" type="text/css" href="../addons/amouse_ecard/style/css/vpopup.css?v=20150413">
+<!--#start JS-->
+<script>
+    $(document).ready(function () {
+        var winH = $(window).height();
+        $(".card").height(winH);
+    });
+</script>
+{php echo register_jssdk(false);}
+<script type="text/javascript">
+    initShare();
+    function initShare(){
+        wx.ready(function () {
+            shareMeta = {
+                title: "{$member['realname']}的微名片",
+                desc: "公司:{$member['company']}\n职位:{$member['job']}\n点击查看更多信息",
+                link: "{$linkUrl}",
+                imgUrl: "{$shareimg}",
+                success: function(){
+
+                },
+                cancel: function(){
+                    // alert("分享失败，可能是网络问题，一会儿再试试？");
+                }
+            };
+            wx.onMenuShareTimeline(shareMeta);
+            wx.onMenuShareAppMessage(shareMeta);
+            wx.onMenuShareWeibo(shareMeta);
+            wx.onMenuShareQQ(shareMeta);
+            wx.onMenuShareQZone(shareMeta);
+        });
+    }
+
+</script>
+<!--#end JS-->
+<script>
+    $("link").each(function () {
+        var $this = $(this);
+        var url = $this.attr("href");
+        var ts = (new Date()).getTime();
+
+        $this.on("error", function () {
+            $this.attr("href", url + "?=" + ts);
+        });
+    });
+</script>
+
+<!--<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3363dc8e04aa36a7f96745f93058a892";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>-->
+
+{if (!empty($isbjyy))}
+<div class="musicBox play" id="musicBox"></div>
+<audio id="musicPlayer" loop src="{$musicUrl}" autoplay="autoplay" style="display:none;position:absolute;z-index:-11"></audio>
+{/if}
+<script>
+    //收藏功能，ajax方法
+    function collectAjax() {
+        var mid = $('#mid').val();
+        var cid = $('#cid').val();
+        var pushUrl = "{php echo murl('entry//collect',array('m'=>'amouse_ecard'),true)}";
+        $.ajax({
+            "type": "post",
+            "url": pushUrl,
+            "data": {"mid": mid,"wid":'{$from_user}',"cid": cid},
+            "dataType": "json",
+            "success": function (data) {
+                if (data.success) {
+                    if (data.status == 1) {
+                        $.flytip("收藏成功！");
+                        //setTimeout(tiaozhuan(data.guanzhuUrl),30000);
+                    }
+                    if (data.status == 0) {
+                        $.flytip("您还没有建立微名片，马上为您跳转到帮助链接");
+                        setTimeout("tiaozhuan('" + data.guanzhuUrl + "')", 3000)
+                    }
+                    if (data.status == 2) {
+                        $.flytip("收藏失败，可能是网络有问题？");
+                    }
+                    if (data.status == 3) {
+                        $.flytip("您已经收藏过{$member['realname']}的名片了^_^");
+                    }
+                } else {
+                    $.flytip("收藏失败，可能是网络有问题？");
+                }
+            }
+        });
+    }
+    function tiaozhuan(url) {
+        window.location.href = url;
+    }
+
+    //点赞功能，ajax方法
+    function likeAjax() {
+        var mid = $('#mid').val();
+        var cid = $('#cid').val();
+        $.ajax({
+            "type": "post",
+            "url": "{php echo murl('entry//like',array('m'=>'amouse_ecard'),true)}",
+            "data": {"mid": mid,"wid":'{$from_user}', "cid": cid},
+            "dataType": "json",
+            "success": function (data) {
+                if (data.success) {
+                    if (data.status == 1) {
+                        $.flytip("点赞成功！");
+                        document.getElementById('zan').innerHTML = data.zan;
+                    }
+                    if (data.status == 0) {
+                        $.flytip("您还没有建立微名片，马上为您跳转到帮助链接");
+                        setTimeout("tiaozhuan('" + data.guanzhuUrl + "')", 3000)
+                    }
+                    if (data.status == 2) {
+                        $.flytip("点赞失败，可能是网络有问题？");
+                    }
+                    if (data.status == 3) {
+                        $.flytip("您已经为{$member['realname']}点过赞了");
+                    }
+                } else {
+                    $.flytip("点赞失败，可能是网络有问题？");
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

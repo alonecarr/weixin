@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.efwww.com" versionCode="0.6">
+	<application setting="false">
+		<name><![CDATA[微二手房]]></name>
+		<identifie><![CDATA[amouse_house]]></identifie>
+		<version><![CDATA[2.0.6]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[出租,求购，求租，出售新房，二手房，新楼盘发布]]></ability>
+		<description><![CDATA[微房产，出租,求购，求租，出售新房，二手房，最新房产信息平台，可以出租,求购，求租，出售新房，二手房，新楼盘信息,本地时尚生活互动平台]]></description>
+		<author><![CDATA[易福源码网]]></author>
+		<url><![CDATA[http://www.efwww.com]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="false" />
+		<card embed="false" />
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="最新房产信息入口" do="index" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="幻灯片管理" do="slide" state="" direct="false" />
+			<entry title="房产管理" do="house" state="" direct="false" />
+			<entry title="新楼盘管理" do="premises" state="" direct="false" />
+			<entry title="参数设置" do="sysset" state="" direct="false" />
+		</menu>
+		<home>
+			<entry title="微站首页" do="index" state="" direct="false" />
+		</home>
+	</bindings>
+	<install><![CDATA[
+
+]]></install>
+	<uninstall><![CDATA[]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

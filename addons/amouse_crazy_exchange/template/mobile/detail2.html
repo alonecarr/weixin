@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>积分兑换详情</title>
+    <link rel="stylesheet" href="{RES}css/foundation.css">
+    <link rel="stylesheet" href="{RES}css/main.css">
+    <link rel="stylesheet" href="{RES}css/exchange2.css">
+    <link rel="stylesheet" href="{RES}css/exchange-detail.css">
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="content">
+        <div class="dialog" id="tip">
+            <div class="dialog-cnt">
+                <div class="dialog-bd">
+                    <h3>提示</h3>
+                    <p class="text"></p>
+                    <a class="button correct-btn" id="alert_ok">确&nbsp;&nbsp;定</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-bar">
+            <ul class="row">
+                <li class="small-6 medium-6 columns"><a class="top-nav active" href="{php echo $this->createMobileUrl('shop',array('mid'=>pencode($fansid)),true)}">积分兑换</a></li>
+                <li class="small-6 medium-6 columns"><a class="top-nav" href="{php echo $this->createMobileUrl('exchage',array('mid'=>pencode($fansid)),true)}">兑换记录</a></li>
+            </ul>
+        </div>
+        <div class="goods">
+            <div class="row goods-list">
+                <div class="small-12 medium-12 columns goods-center">
+                    <div class="goods-detail">
+                        <div class="goods-img">
+                            <img src="{php echo strpos($goods['thumb'],'http://')===FALSE?(tomedia($goods['thumb'])):$goods['thumb']}" alt=""/>
+                        </div>
+                        <div class="goods-intro row">
+                            <div class="small-6 medium-6 columns"><p>{$goods['title']}</p></div>
+                            <div class="small-6 medium-6 columns"><p class="integration">{$goods['credit']}积分</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="attention">
+            {$goods['detail']}
+        </div>
+        <form method="post" id="form_input">
+            <input type="hidden" name="gid" value="{$goods['id']}">
+            {if $goods['type']==0}
+            <div class="row exchange-box">
+                <div class="small-12 medium-12 columns">
+                   <p class="exchange-subtitle">设置收货地址</p>
+                </div>
+                <div class="small-12 medium-12 columns">
+                    <div class="small-12 medium-8 columns">
+                        <label>收货人
+                            <input id="address_name" maxlength="30" name="name" placeholder="收货人" type="text" value="{$creditlog['address_name']}">
+                        </label>
+                    </div>
+                </div>
+                <div class="small-12 medium-12 columns">
+                    <div class="small-12 medium-8 columns">
+                        <label>手机号码
+                            <input id="address_phone" type="tel" maxlength="30" name="phone" placeholder="手机号码" type="text" value="{$creditlog['address_phone']}">
+                        </label>
+                    </div>
+                </div>
+                <div class="small-12 medium-12 columns">
+                    <div class="small-12 medium-8 columns">
+                        <label>详细地址信息
+                            <input id="address" maxlength="30" name="addr" placeholder="详细地址信息" type="text">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            {/if}
+            <div class="row">
+                <div class="small-12 columns change">
+                    {if $mycredit<$goods['credit']}
+                    <a class="button btn" id="btn_exchange">立即兑换</a>
+                    {else}
+                    <a class="button btn">积分不足</a>
+                    {/if}
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{RES}js/modernizr.js"></script>
+<script src="{RES}js/jquery.js?v2"></script>
+<script src="{RES}js/foundation.js"></script>
+<script>
+    $(document).foundation();
+    alert_ok = null;
+    function new_alert(msg, cb) {
+        alert_ok = cb;
+        $('#tip .text').html(msg);
+        $('#tip').show();
+    }
+    old_alert = window.alert;
+    window.alert = new_alert;
+    $('#alert_ok').click(function () {
+        if (alert_ok) {
+            alert_ok();
+        }
+        $('#tip').hide();
+    });
+</script>
+
+<script>
+    $('#btn_exchange').click(function(){
+        var data = $('#form_input').serialize();
+        var type="{$goods['type']}";
+        if($('#address_name').val().length < 1){
+            new_alert('请设置收货人。');
+            return false;
+        }
+        if($('#address_phone').val().length < 1){
+            new_alert('请设置收货地址。');
+            return false;
+        }
+        if($('#address').val().length < 1){
+            new_alert('请设置收货地址。');
+            return false;
+        }
+        var getUrl = "{php echo $this->createMobileUrl('ajaxExchangeDo',array('mid'=>pencode($fansid)),true)}&_=" + Math.random();
+        var credit="{$goods['credit']}";
+        if (confirm("是否兑换（兑换需要消耗"+credit+"个积分）？")) {
+            $.post(getUrl, data, function (res) {
+                console.log(res);
+                if(res.code==200){
+                    new_alert('兑换成功。', function () {
+                        window.location = "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('exchange',array('mid'=>pencode($fansid))), 2)}";
+                    });
+                }else{
+                    new_alert(res.msg);
+                }
+            }, 'json');
+            return false;
+        }
+    });
+</script>
+</body>
+</html>

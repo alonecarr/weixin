@@ -1,0 +1,117 @@
+/*
+* @Author: Mark
+* @Date:   2015-03-26 10:37:44
+* @Last Modified by:   Mark
+* @Last Modified time: 2015-07-14 17:01:22
+*/
+*{box-sizing:border-box;-moz-box-sizing:border-box; /* Firefox */-webkit-box-sizing:border-box; /* Safari */font-family:Microsoft YaHei;}
+html {overflow-y:scroll;font-size: 20px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-touch-action: none;}/*解决 iPhone 横屏时默认会放大文字的*/
+body,div,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,iframe,input,textarea,select,label,article,aside,footer,header,menu,nav,section,time,audio,video {
+    margin:0; padding:0;}
+.rDialog{font-size: 16px;}
+img{border:none;}
+.o-onlyl,ul {list-style:none;}
+ul{font-size:0;}
+li{list-style-type:none;}
+article,aside,footer,header,hgroup,nav,section {display: block;}
+input,select,button,textarea {border:none;outline: 0;}
+input[type="button"],
+input[type="submit"],
+input[type="reset"]{-webkit-appearance: none;}
+::-webkit-input-placeholder { /* WebKit browsers */    color: #999;}
+table{width:100%;border-collapse: collapse;border-spacing: 0;table-layout: fixed;word-wrap: break-word;}
+em, i {font-style: normal;}
+tr{height:35px;}
+td,th{border-bottom:1px solid #f1f1f1;padding:2px 6px; text-align:center}
+th{background:#EBF3F0;text-align:center;font-size:13px;}
+td{font-size:12px; text-align:center}
+.pr{ position:relative;}
+.pa{ position:absolute;}
+.min28{min-height:28.4rem}
+.orange{ color:#fe4200}
+strong,b,h4,h6{ font-weight:normal}
+
+
+a{transition:color .2s;outline:none;text-decoration:none;}
+.fl { float: left; display: inline; }
+.fr { float: right; display: inline; }
+.clearfix:after{ content:""; display:block; clear:both; height:0; visibility:hidden;}
+.clearfix{ display:block;}
+.mb20{ margin-bottom:0.5rem;}
+.mt20{ margin-top:0.5rem;}
+.mt40{ margin-top:0.8rem; margin-bottom:0.3rem; }
+.pb40{ padding-bottom:1rem;}
+.pb30{padding-bottom:3rem}
+.pb44{padding-bottom:4rem}
+.pb10{padding-bottom:0.2rem}
+.load img {display: block;margin: 0 auto;width: 1.6rem;height: 1.6rem;}
+.blank10{ height:0.3rem; clear:both;}
+.blank20{ height:0.6rem; clear:both;}
+.blank30{ height:1rem; clear:both;}
+
+body{max-width:640px;margin:0 auto;}
+.f-log{ width:100%;color:#999;font-size:0.55rem; position: absolute;bottom:2.8rem;text-align:center;}
+/*-----------------------------------------------------------------------关注公众号-------------------------------------------------------------------*/
+.focus_gg{ }
+.focus_gg .focus_p{ background:#fefee2; border:1px solid #eff0de; color:#656452; font-size:0.55rem; padding:0.5rem 0.4rem;}
+.focus_adv{ background:#fff;width:100%; display: -webkit-box;display: box;box-sizing: border-box;padding:0.5rem 0.5rem; border-bottom:1px solid #e5e5e5;}
+
+.focus_gg{ width:100%;}
+.focus_gg .fot_img{ width:2.375rem;height:2.375rem; margin-right:0.5rem;}
+.focus_gg .fot_img span{ display:block; width:2.375rem; height:2.375rem; }
+.focus_gg .fot_img span img{display:block; width:2.375rem; height:2.375rem; border-radius:50%;}
+.focus_gg .fot_txt{width:65%;height:2.375rem; display: table-cell;vertical-align: middle; width:9.8rem;}
+.focus_gg .fot_txt h3{ font-size:0.8rem; color:#333; font-weight:normal;}
+.focus_gg .fot_txt p{ font-size:0.55rem; color:#757575;display: table-cell;vertical-align: middle; padding-top:0.1rem;}
+.focus_gg .fot_btn{ width:2.7rem;text-overflow: ellipsis; display: table-cell;vertical-align: middle; height:2.385rem; padding-left:0.2rem; }
+.focus_gg .fot_btn_a{ display:inline-block;width:2.25rem; height:1.625rem;border-radius:0.2rem; text-align:center; color:#fff;  border:1px solid #00b800;  background:#00b800; overflow:hidden; margin-top:0.22rem;}
+.focus_gg .fot_btn_a em{ display:block;width:2.25rem;height:1.625rem; background:url(../images/focus.png) no-repeat 0 0; background-size:2.25rem 3.25rem; }
+/*.focus_gg .fot_btn_a.active{border:1px solid #ccc; }
+.focus_gg .fot_btn_a.active em{background:url(../images/focus.png) no-repeat 0 -1.625rem;background-size:2.25rem 3.25rem;}*/
+
+/*-----------------------------------------------------------------------超级无敌涨粉术------------------------------------------------------------------*/
+.time-hm {
+    font-size: 0.6rem;width:90%; margin-left:5%; margin-right:5%;
+    color: #343434;
+    padding: 0.5rem 0;
+    text-align: center;
+    background: #fff;
+    padding:0.2rem 0;
+    margin: 0.2rem auto;
+    border-radius: 4px;
+    border: #dbdbdb solid 1px;
+}
+.hm-op,.hm-tp{ display:inline-block; float:right}
+.hm-op{ padding-right:0.3rem;}
+.earn_zs{ font-size:0.7rem; color:#666; width:90%; margin-left:5%; margin-right:5%;line-height:1rem; margin-bottom:0.2rem; text-align:center; padding-top:0.3rem; }
+.earn_zs_em{ color:#999; font-size:0.55rem; display:block; line-height:0.6rem; text-align:center; padding-bottom:0.3rem;}
+.earn_zs_0{ font-size:0.65rem; background:#de5b71; line-height:1.3rem; height:1.3rem; color:#fff; padding-left:0.5rem;}
+.focus_gg_top{ width:100%; height:2.75rem; background:url(../images/bgimg.png) no-repeat; background-size:100% 2.75rem;border-bottom:none; padding:0.4rem 0.6rem 0.4rem; }
+.focus_zdt{ width:100%; }
+.focus_gg_top .fot_btn{ width:2.7rem;text-overflow: ellipsis; display: table-cell;vertical-align: middle; height:1rem; padding-left:0.2rem; margin-top:0 }
+
+
+.focus_zdt p{ color:#fff; font-size:0.7rem;}
+.focus_zdt .focus_b_z{ width:100%; height:0.575rem; background:#fff; border-radius:0.5rem; margin-top:0.3rem; }
+.focus_zdt .focus_b_zd{height:0.575rem;background:#f2c11c; border-radius:0.5rem;}
+
+
+.uppow{ background:#ffe9c0; background:url(../images/qp.png?v=2) #ffe9c0 no-repeat; position:absolute; top:0; height:100%; width:100%; background-size:100%;}
+.change{ background:#ffe9c0;}
+.chan_t{ width:100%; height:10rem; background:url(../images/c-t.png) no-repeat; background-size:100% 10rem; text-align:center; color:#c71000;}
+.chan_t h4{ padding-top:3.4rem; font-size:1.2rem; font-weight:bold;}
+.chan_t p{ font-size:0.8rem; line-height:1.3rem; padding-top:0.6rem; font-weight:bold;}
+.chan_b{width:100%; background:url(../images/c-b.png) repeat-y; background-size:100% 0.25rem; text-align:center; color:#fff; font-size:0.8rem; padding:0 2rem 1rem; }
+.chan_b p{padding-bottom:0.5rem}
+.chan_b h4{ padding-top:0.8rem; font-size:1rem; line-height:2rem;}
+.chan_b h4 b{ font-size:0.65rem; letter-spacing:-1px;}
+.chan_f a{ display:block;width:100%; background:url(../images/c-f.png) no-repeat; background-size:100% 5rem; height:5rem;}
+.chan_c a{ display:block;width:100%; background:url(../images/c-c.png) no-repeat; background-size:100% 5rem; height:5rem;}
+.chan_d{ background:url(../images/c-d.png) no-repeat;  background-size:100% 3rem; height:3rem;}
+
+.earn_po .fot_tc{ text-align:center; width:80%; padding:1rem 1rem 0 1rem;}
+.earn_po .fot_tc h3{ font-size:1rem; padding-bottom:0.2rem}
+.earn_po .fot_tc p{ text-align:left; font-size:0.65rem;}
+.ewImg img{display:block; width:9.6rem; height:9.6rem; margin:0.8rem auto 0.8rem; }
+.ewP{ border:1px dashed #ddd; width:90%;margin-left:5%; margin-right:5%; padding:0.4rem; background:#f5f5f5; border-radius:0.3rem; margin-top:0.4rem;}
+.ewP p{ color:#333; font-size:0.65rem; width:92%; margin-left:4%; margin-right:4%; line-height:1.2rem; }

@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no">
+    <title>大转盘抢红包赢取万元现金</title>
+    <link rel="stylesheet" type="text/css" href="{RES}css/reset.css">
+    <link rel="stylesheet" type="text/css" href="{RES}css/media50px.min.css">
+    <link rel="stylesheet" type="text/css" href="{RES}egg/style.css">
+    <script src="{RES}js/jquery.js"></script><script src="{RES}js/myc.js"></script>
+    <script src="{RES}js/layer.js"></script>
+</head>
+<body>
+<style>
+    .fdzjxx{position: fixed;    z-index: 100; width: 100%; }
+    #marquee2{height:20px;overflow:hidden; background:rgba(0,0,0,0.5);}
+    #marquee2 ul li{float:left; padding:0 10px; line-height:20px;}
+    #marquee2 ul li a {color:#fff;font-weight: normal;font-size: 14px;line-height: 20px;}
+</style>
+<div class="fdzjxx resize">
+    <div id="marquee2">
+        <ul>
+            {if !empty($gundongs)}
+            {loop $gundongs $gundong}
+                <li><a href="#">{$gundong['gd_title']}</a></li>
+            {/loop}
+            {else}
+                <li><a href="#">用户：lisa果梦客服 拆到 <span style="color:#fffc00;">18元</span> 红包</a></li>
+                <li><a href="#">用户：靖 拆到 <span style="color:#fffc00;">5.54元</span> 红包</a></li>
+                <li><a href="#">用户：红包程序技术 拆到 <span style="color:#fffc00;">3.98元</span> 红包</a></li>
+                <li><a href="#">用户：ZL .BBQ 拆到 <span style="color:#fffc00;">2元</span> 红包</a></li>
+            {/if}
+        </ul>
+    </div>
+</div>
+<div class="header">
+    <span style="left: 0.1rem;right: auto;">
+    </span>
+    <img src="{RES}images/pic_002.png" class="resize" style="width:320px; height:76px;" />
+    <span>
+    </span>
+</div>
+
+<div class="zhifubox resize" style="position:absolute; left:0; width:320px; top:84px;text-align: center;">
+    <div style="width: 80%;text-align: center;margin: auto;height: 20px;overflow: hidden;line-height: 20px; background:url('{RES}images/notice.png');background-repeat: no-repeat;background-position: left;color: red;">
+        <marquee behavior="scroll" contenteditable="true" onstart="this.firstChild.innerHTML+=this.firstChild.innerHTML;" scrollamount="3" style="width:90%;margin-left: 20px;" onmouseover="this.stop();" onmouseout="this.start();">
+            点击红包福利图片,联系在线客户,更多活动,等待你来参加
+        </marquee>
+    </div>
+    {loop $list $rsetdata}
+    {php $index=$index+1}
+    {php $set= unserialize($rsetdata['sets'])}
+    <img id="price{$rsetdata[id]}" src="{if $rsetdata['top_bg']}{php echo strpos($rsetdata['top_bg'],'http://')===FALSE?(tomedia($rsetdata['top_bg'])):$rsetdata['top_bg']}{/if}" class="resize" width='40%' onclick="ajax('{$rsetdata[id]}')">
+    {/loop}
+</div>
+
+<div class="qiandai">
+    <img src="{RES}images/pic_01.png" class="bg resize" style="width:320px; height:252px;" />
+    <div class="qd-main resize" style="top:80px;">
+        <h4 class="resize" style="line-height:34px;"><a href="">欢迎您加入我们</a></h4>
+        <div style="font-size: 14px;color:#fff;">
+
+        </div>
+        <p><a href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('vip',array('mid'=>pencode($fansid))), 2)}">
+            <img src="{RES}images/pic_0006.png" class="resize" style="width:206px; height:50px; margin-top:30px;" />
+        </a></p>
+    </div>
+</div>
+
+
+{template 'footer'}
+
+
+<script>
+    window.onresize=function(){location.reload();};
+    scaleW = window.innerWidth / 320;
+    scaleH = window.innerHeight / 480;
+    var resizes = document.querySelectorAll('.resize');
+    for (var j = 0; j < resizes.length; j++) {
+        resizes[j].style.width = parseInt(resizes[j].style.width) * scaleW + 'px';
+        resizes[j].style.height = parseInt(resizes[j].style.height) * scaleH + 'px';
+        resizes[j].style.lineHeight = parseInt(resizes[j].style.lineHeight) * scaleH + 'px';
+        resizes[j].style.top = parseInt(resizes[j].style.top) * scaleH + 'px';
+        resizes[j].style.marginTop = parseInt(resizes[j].style.marginTop) * scaleH + 'px';
+        resizes[j].style.left = parseInt(resizes[j].style.left) * scaleW + 'px';
+        resizes[j].style.bottom = parseInt(resizes[j].style.bottom) * scaleH + 'px';
+    }
+
+</script>
+<script>
+    //触屏--------------------------
+    var touchPageYStart = 0;
+    try{
+        if($.isFunction(eval(etouch))){
+            var touch = etouch;
+        }
+    }catch(e){
+        var touch = function (event){
+            var event = event || window.event;
+            var eot = event.touches[0];
+            switch(event.type){
+                case "touchstart":
+                    touchPageYStart = eot.clientY;
+                    break;
+                case "touchend":
+                    break;
+                case "touchmove":
+                    var stTmp = $("body").scrollTop();
+                    $("body").scrollTop(stTmp + (touchPageYStart - eot.clientY));
+                    touchPageYStart = eot.clientY;
+                    event.preventDefault();
+                    break;
+            }
+        }
+    }
+    document.addEventListener('touchstart',touch, false);
+    document.addEventListener('touchend',touch, false);
+    document.addEventListener('touchmove',touch, false);
+    function onBridgeReady(){
+        //WeixinJSBridge.call('hideOptionMenu');
+    }
+
+    if (typeof WeixinJSBridge == "undefined"){
+        if( document.addEventListener ){
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        }else if (document.attachEvent){
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    }else{
+        onBridgeReady();
+    }
+</script>
+
+
+
+<style>
+    #layui-layer1{left:0px;}
+    .piaofu{
+        width:117px;
+        height:96px;
+        background:url('{RES}images/piaofu.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        position:relative;
+        position: absolute;
+        top:0.7rem;
+    }
+    @keyframes mymove {
+        from {top:0px;}
+        to {top:6rem;}
+    }
+
+    @-webkit-keyframes mymove
+    {
+        from {top:0px;}
+        to {top:6rem;}
+    }
+</style>
+
+
+<script>
+    $(function(){
+        $('#tgshare').click(function(){
+            layer.open({
+                title:'温馨提示',
+                content: "加客服拉您进群天天免费领取红包 <img src={if $set2['sys']['kefu']}{php echo strpos($set2['sys']['kefu'],'http://')===FALSE?(tomedia($set2['sys']['kefu'])):$set2['sys']['kefu']}{else}{RES}images/getqrcode.jpg{/if}>"
+                ,btn: ['关闭']
+                ,cancel: function(){
+                }
+            });
+            //分享到朋友圈领取1-10元随机红包，朋友圈保留2小时不能删除，在线领取红包！
+
+        });
+
+
+    })
+</script>
+<script>
+    function ajax(id) {
+        window.location.href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('gotopay',array('mid'=>pencode($fansid))), 2)}&gid="+id;
+        myc.showProgress();
+    }
+</script>
+<div class='piaofu' id='tgshare'></div>
+
+
+<script src="{RES}js/jquery.kxbdmarquee.min.js"></script>
+<script type="text/javascript">
+    $('#marquee2').kxbdMarquee({
+        isEqual: false
+    });
+
+</script>
+
+</body>
+</html>

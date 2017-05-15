@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no">
+<title>转盘记录</title>
+<link rel="stylesheet" type="text/css" href="{RES}css/reset.css">
+<link rel="stylesheet" type="text/css" href="{RES}css/media50px.min.css">
+<link rel="stylesheet" type="text/css" href="{RES}css/style.css">
+<script type="text/javascript" src="{RES}js/jquery.js"></script>
+</head>
+
+<body class="bg1" style="overflow:hidden;">
+<h4 class="txtid">会员ID：{$fansid}</h4>
+<img src="{RES}images/pic_010.png" class="yj-title" />
+<div class="yj-main">
+	<div class="yj-list">
+		<table width="100%" border="0" cellspacing="0" cellpadding="1">
+			<thead class="ulList">
+				<tr>
+					<th>日期</th>
+					<th>金额</th>
+					<th>状态</th>
+				</tr>
+			</thead>
+		</table>
+		<a  class="morebtn">加载更多</a>
+	</div>
+	<a href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('gotopay',array('gid'=>$dsetdata['id'],'mid'=>pencode($fansid))), 2)}" class="godzpbtn">继续玩赚赚</a>
+</div>
+
+{template 'footer'}
+
+<div class="gundong" style="text-align: center;" id="haha1">
+	<ul>
+        {loop $dgundongs $adv}
+        <li><span>{$adv['gd_title']}</span></li>
+        {/loop}
+    </ul>
+</div>
+
+<script>
+function scrollNews(selector,Entry,time,StartIndex)
+{
+	var _self=this;
+	this.selector=selector;
+	this.Entry=Entry;
+	this.time = time;
+	this.i=StartIndex||0;
+	this.Count=$(this.selector+" ul li").length;
+	$(this.selector+" ul li").hide();//全部隐藏
+	$(this.selector+" ul li").eq(this.i).show();//第i个显示
+	$(this.selector).bind("mouseenter",function(){
+	    	if(_self.sI){clearInterval(_self.sI);}
+	}).bind("mouseleave",function(){
+			_self.showIndex(_self.i++);
+	})
+	/*生成激活OL项目*/
+	for(var j=0;j<this.Count;j++)
+		$(this.selector+" .activeOL").append('<li><a onclick="'+this.Entry+'.showIndex('+j+');" href="#"><img src="images/crystal.gif"></a></li>');
+	$(this.selector+" ol li a").eq(this.i).addClass("active");
+	this.sI=setInterval(this.Entry+".showIndex(null)",this.time);
+	
+	this.Getselector=function(){return this.selector;}
+	this.showIndex=function(index)
+	{
+		this.i++;//显示下一个
+		if(this.sI){clearInterval(this.sI);}
+		this.sI=setInterval(this.Entry+".showIndex()",this.time);
+		if (index!=null)
+		{
+			this.i=index;
+		}
+		if(this.i==this.Count)
+			this.i=0;
+		$(this.selector+" ul li").hide();
+		$(this.selector+" ul li").eq(this.i).slideDown();
+		$(this.selector+" ol li a").removeClass("active");
+		$(this.selector+" ol li a").eq(this.i).addClass("active");
+	}
+}
+var s=new scrollNews("#haha1","s", 2000 , 1);
+</script>
+<link rel="stylesheet" href="{RES}css/weui.css"/>
+<script src="{RES}js/jweixin-1.0.0.js" language="javascript" type="text/javascript"></script>
+<!--showMsg -->
+<div class="weui_dialog_alert" style="display:none;">
+<div class="weui_mask"></div>
+<div class="weui_dialog">
+    <div class="weui_dialog_hd"><strong class="weui_dialog_title">提 示</strong></div>
+    <div class="weui_dialog_bd"></div>
+    <div class="weui_dialog_ft">
+        <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+    </div>
+</div>
+</div>
+<script language="javascript" type="text/javascript">
+$(".weui_btn_dialog").click(function(){
+    $(".weui_dialog_alert").hide();
+    location.reload();
+});
+</script><script>
+$(function(){
+	var rid =0;
+    var nid =0;
+    var hid = 0;
+    var page=1;
+    var goStatus = 0;
+    var getRecord = function(){
+        var page_url = "{php echo $this->createMobileUrl('bonus',array('mid'=>pencode($fansid)),true)}&p="+page+"&op=zhuanpan&isajax=1&_=" + Math.random();
+        $.getJSON(page_url,function(data){
+            if(data.status==1) {
+                var res = data.html;
+                var strTmp = "";
+                for(var i =  0; i < res.length; i++){
+                    var mM = "";
+                    var mS = "";
+                    if(parseInt(res[i].status) == 1){
+                        mM = res[i].money+"元";
+                        mS = "已拆封";
+                    }else{
+                        mM = "";
+                        mS = "转盘未转";
+                    }
+                    strTmp += '<tr><td style="text-align:left;">'+_msTimeFormat(res[i].createtime)+'</td><td style="text-align:right;" class="hpsMoney hpsMoney'+res[i].id+'">'+mM+'</td><td style="text-align:right;" class="hpsStatus hpsStatus'+res[i].id+'">'+mS+'</td></tr>';
+                    rid = res[i].id;
+                };
+                page += 1;
+                $(".ulList").append(strTmp);
+            }else{
+                $(".ulList").append('<tr><td colspan="3">暂无数据</td></tr>');
+                $(".morebtn").hide();
+            }
+        });
+    }
+    $(".morebtn").bind("click",getRecord);
+    getRecord();
+})
+function _msTimeFormat(str){
+    var ips;
+    var strTime;
+    ips = (str+"").split(".");
+    var nd = new Date(parseInt(ips[0]) * 1000);
+    var m = nd.getMonth()+1;
+    m = m>9?m:"0"+m;
+    var d = nd.getDate();
+    d = d>9?d:"0"+d;
+    var h = nd.getHours();
+    h = h>9?h:"0"+h;
+    var i = nd.getMinutes();
+    i = i>9?i:"0"+i;
+    var s = nd.getSeconds();
+    s = s>9?s:"0"+s;
+    var nds = m+"-"+d+" "+h+":"+i;
+    return nds;
+}
+</script>
+<script type="text/javascript">
+$(window).load(function(){
+	var border = $(window).height()-$(".yj-title").height()-$(".yj-title").height()-$(".yj-title").height()-$(".yj-title").height();
+	$(".yj-list").css('height',border);
+});
+</script>
+</body>
+</html>

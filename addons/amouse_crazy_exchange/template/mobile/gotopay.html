@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0"/>
+    <link rel="stylesheet" href="{RES}css/weui.css"/>
+    <link href="{RES}css/comm.css?v=160213" rel="stylesheet" type="text/css"/>
+    {php echo register_jssdk(false);}
+    <script type="text/javascript" src="{RES}js/jquery.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <title>微信安全支付</title>
+</head>
+
+<body style="margin:0px;padding:0px;background-color:#FFF;overflow:hidden">
+<div class="warp">
+    <div style="position:relative;background-color:#44b035">
+        <div style="position:relative;width:50%;margin:0px auto;padding:10px 0px;">
+            <img src="{RES}images/wx_paysafe.png" style="width:100%"/>
+        </div>
+    </div>
+    <div style="position:relative;width:50%;margin:10px 0">
+        <img src="{RES}images/TB28XzomXXXXXcyXXXXXXXXXXXX-14659513.png" style="width:100%"/></div>
+    <div style="height: 60px;width:100%;position:relative;text-align:center">
+        <input type="hidden" name="fansid" id="fansid" value="{$fansid}">
+        <input type="hidden" name="setid" id="setid" value="{$dsetdata['id']}">
+        <button style="background: #44b035;border: 1px solid #44b035;width: 90%;height: 40px;line-height: 35px;border-radius: 8px;font-size:16px;cursor: pointer;color:#FFF;"
+                class="gopay" onclick="callpay();">支付抢{$dzpset['sys']['draw']}元红包
+        </button>
+    </div>
+</div>
+<div align="center" style="width:100%;color:#ababab;font-size:12px;bottom:0;position:absolute">
+    <div>支付安全由中国人民财产保险股份有限公司承保</div>
+</div>
+<script type="text/javascript">
+    //暂时关闭
+    function closemsg() {
+        $(".weui_dialog_title").html('通知');
+        $(".weui_dialog_bd").html('微信防沉迷限制，今天娱乐金额已满，请明天10点后继续参与！谢谢！');
+
+        $(".weui_dialog_alert").show();
+    }
+
+    function callpay() {
+        var fansid = $('#fansid').val();
+        var setid = $('#setid').val();
+        var submitData ={
+            'fansid': fansid,'setid': setid
+        };
+        $('.gopay').html("正在支付中，请别走开");
+        {if $set['iscash'] == 0}
+        $.ajax({
+            type : "POST",
+            url :"{php echo $this->createMobileUrl('ajaxOrder', array(), true)}",
+            data : submitData,
+            dataType : "json",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success : function(data){
+                if(data && data.code==200){
+                    var oid= data.oid;
+                    window.location.href="{php echo $this->createMobileUrl('payment',array(),true)}&orderid="+oid;
+                }else{
+                    return;
+                }
+            },
+            error : function(data){
+                $(".weui_dialog_title").html('网络出错');
+                $(".weui_dialog_bd").html('网络出错');
+                $(".weui_dialog_alert").show();
+            }
+        });
+        {else}
+        $.ajax({
+            type: "POST",
+            url: "{php echo $this->createMobileUrl('pcenter')}",
+            data: submitData,
+            dataType: "json",
+            beforeSend: function (XMLHttpRequest) {
+            },
+            success: function (res) {
+                if(res.status == 200) {
+                    window.location.href = res.pay_url;
+                }else if(res.status == 201) {
+                    window.location.href = "{php echo $this->createMobileUrl('vip')";
+                }else{
+                        $(".weui_dialog_title").html("提示");
+                    $(".weui_dialog_bd").html(res.msg);
+                    $(".weui_dialog_alert").show();
+                }
+            },
+            error: function (data) {
+                // new_alert(data.msg);
+            }
+        });
+        {/if}
+    };
+</script>
+
+
+<div class="weui_dialog_alert" style="display:none;">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">提 示</strong></div>
+        <div class="weui_dialog_bd"></div>
+        <div class="weui_dialog_ft">
+            <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".weui_btn_dialog").click(function () {
+        $(".weui_dialog_alert").hide();
+        window.location.href = "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('index',array('mid'=>pencode($fansid))), 2)}";
+    });
+</script>
+</body>
+</html>

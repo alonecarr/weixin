@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no">
+    <title>红包分享</title>
+    <link rel="stylesheet" type="text/css" href="{RES}red/reset.css">
+    <link rel="stylesheet" type="text/css" href="{RES}red/media50px.min.css">
+    <link rel="stylesheet" type="text/css" href="{RES}red/animate.css">
+    <link rel="stylesheet" type="text/css" href="{RES}red/style.css">
+    <link rel="stylesheet" href="{RES}css/weui.css"/>
+    <script type="text/javascript" src="{RES}js/jquery.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="header">
+    <img src="{RES}images/pic02.png"/>
+    <span>会员ID: {$fansid}</span>
+</div>
+{loop $list $index $item}
+{php $index=$index+1}
+{php $set= unserialize($item['sets'])}
+<div class="zhifubox" style="position:absolute;left: 0.5rem;top:{php echo $index*1.6}rem;" onclick="ajax('{$item[id]}')">
+    <img src="{RES}images/pic_03.png" class="resize" style="width:99%; height:96px;" />
+    <p class="line1 resize go5" style="line-height:80px;">
+        <span>{$set['sys']['draw']}{if $set['sys']['customer']}{$set['sys']['customer']}{else}元{/if}</span>转盘
+    </p>
+</div>
+{/loop}
+
+<div class="qiandai" style="z-index:99;margin-top:2rem;">
+    <img src="{RES}images/pic_ck.png" class="govip bg" style="width:382px; margin-top:-100;"/>
+</div>
+
+
+{template 'footer'}
+
+
+<!--showMsg -->
+<div class="weui_dialog_alert" style="display:none;">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">提 示</strong></div>
+        <div class="weui_dialog_bd"></div>
+        <div class="weui_dialog_ft">
+            <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(".weui_btn_dialog").click(function () {
+        $(".weui_dialog_alert").hide();
+        location.reload();
+    });
+</script>
+<script>
+    //触屏--------------------------
+    var touchPageYStart = 0;
+    try {
+        if ($.isFunction(eval(etouch))) {
+            var touch = etouch;
+        }
+    } catch (e) {
+        var touch = function (event) {
+            var event = event || window.event;
+            var eot = event.touches[0];
+            switch (event.type) {
+                case "touchstart":
+                    touchPageYStart = eot.clientY;
+                    break;
+                case "touchend":
+                    break;
+                case "touchmove":
+                    var stTmp = $("body").scrollTop();
+                    $("body").scrollTop(stTmp + (touchPageYStart - eot.clientY));
+                    touchPageYStart = eot.clientY;
+                    event.preventDefault();
+                    break;
+            }
+        }
+    }
+    document.addEventListener('touchstart', touch, false);
+    document.addEventListener('touchend', touch, false);
+    document.addEventListener('touchmove', touch, false);
+    function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    }
+
+    if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    } else {
+        onBridgeReady();
+    }
+</script>
+<div style="display:none">
+    <script>
+        {$set['sys']['cnzz']}
+    </script>
+</div>
+<div id="ewm">
+    <div class="codebg"><span>保存二维码方法：长按图片，保存到手机</span></div>
+    <img src=""/></div>
+<script>
+    function ajax(id) {
+        window.location.href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('gotopay',array('mid'=>pencode($fansid))), 2)}&gid="+id;
+    }
+
+    $(".govip").click(function (event) {
+        location.href = "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('bonus',array('mid'=>pencode($fansid))), 2)}";
+    });
+    $(".showewm").click(function (event) {
+        $("#ewm").show();
+    });
+    $("#ewm").click(function (event) {
+        $("#ewm").hide();
+    });
+</script>
+</body>
+</html>

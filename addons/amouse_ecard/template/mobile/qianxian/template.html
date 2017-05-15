@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+<title>选择名片模板</title>
+<link rel="stylesheet" href="../addons/amouse_ecard/style/css/reset.css?v=201504101043">
+<link rel="stylesheet" href="../addons/amouse_ecard/style/css/flytip.css?v=201504101043">
+<link rel="stylesheet" href="../addons/amouse_ecard/style/css/vtab.css?v=201504101043">
+<link rel="stylesheet" href="../addons/amouse_ecard/style/css/nameCard.css?v=201504101043">
+</head>
+
+<body class="namecard-style">
+
+<!--#=start page-->
+<div class="namecard-page"> 
+  
+  <!--#=start column-->
+  <section class="style-column pb60" id="tempsList">
+  	<input type="hidden" value="" id="styleListId">
+  	
+  	<div class="vtab tempsbox">
+		<ul class="vtab-title">
+			  <li data-id="times" class="item"><span>时代</span></li>
+			<li data-id="fashion" class="item"><span>时尚</span></li>
+			<li data-id="momentos" class="item"><span>时光</span></li>
+			<li data-id="simple" class="item"><span>简约</span></li>
+			</select>
+		</ul>
+
+		<div class="vtab-content" id="styleList">
+
+            <div class="tips">①时尚版和简约版无需自定义栏目,选好即用。<br>②时代版和时光版可自定义栏目,功能更强大。</div>
+            <ul class="style-inner clearfix item" data-id="times">
+                <li class="style-inner-item {if $card['templateFile']=='qianx_index'}current{/if}" data-id="qianx_index" data-cate="时代">
+                    <img data-src="../addons/amouse_ecard/style/images/template/s6.jpg?t=1414411185663" class="style-item-thumbnail">
+                    <div class="choose-ok"></div>
+                    <span class="style-versions">模板1</span>
+                </li>
+               <li class="style-inner-item {if $card['templateFile']=='times2'}current{/if}" data-id="times2" data-cate="时代">
+                       <img data-src="../addons/amouse_ecard/style/images/template/s01.jpg?t=1414461684137" class="style-item-thumbnail">
+                     <div class="choose-ok"></div>
+                     <span class="style-versions">模板2</span>
+                   </li>
+               <!--<li class="style-inner-item " data-id="544222fb0cf2233e24c5163c" data-cate="时代">-->
+                       <!--<img data-src="http://res2.eqianxian.com/cardtemplate/544222fb0cf2233e24c5163c/sf.jpg?t=1414412086823" class="style-item-thumbnail">-->
+                     <!--<div class="choose-ok"></div>-->
+                     <!--<span class="style-versions">模板3</span>-->
+                   <!--</li>-->
+                <li class="style-inner-item {if $card['templateFile']=='times4'}current{/if}" data-id="times4" data-cate="时代">
+                       <img data-src="../addons/amouse_ecard/style/images/template/s3.jpg?t=1414412106614" class="style-item-thumbnail">
+                     <div class="choose-ok"></div>
+                     <span class="style-versions">模板4</span>
+                   </li>
+               <!-- <li class="style-inner-item " data-id="5442241f0cf2233e24c5163e" data-cate="时代">
+                       <img data-src="http://res2.eqianxian.com/cardtemplate/5442241f0cf2233e24c5163e/s4.jpg?t=1414412184376" class="style-item-thumbnail">
+                     <div class="choose-ok"></div>
+                     <span class="style-versions">模板5</span>
+                   </li>
+                <li class="style-inner-item " data-id="544224d20cf2233e24c5163f" data-cate="时代">
+                       <img data-src="http://res2.eqianxian.com/cardtemplate/544224d20cf2233e24c5163f/s5.jpg?t=1414413088763" class="style-item-thumbnail">
+                     <div class="choose-ok"></div>
+                     <span class="style-versions">模板6</span>
+                   </li>-->
+            </ul>
+
+	        <ul class="style-inner clearfix item" data-id="fashion">
+		    <li class="style-inner-item {if $card['templateFile']=='fashion3'}current{/if}" data-id="fashion3" data-cate="时尚">
+			      	<img data-src="../addons/amouse_ecard/style/images/template/s2.jpg?t=1414412141264" class="style-item-thumbnail">
+			        <div class="choose-ok"></div>
+			        <span class="style-versions">简约时尚版</span>
+		     	 </li>
+                <!--<li class="style-inner-item " data-id="544225d10cf2233e24c51642" data-cate="时尚">
+                       <img data-src="../addons/amouse_ecard/style/images/template/df3.jpg?t=1414407623995" class="style-item-thumbnail">
+                     <div class="choose-ok"></div>
+                     <span class="style-versions">简约时尚版2</span>
+                   </li>
+                 <li class="style-inner-item " data-id="544226140cf2233e24c51647" data-cate="时尚">
+                        <img data-src="../addons/amouse_ecard/style/images/template/s2.jpg?t=1414411214816" class="style-item-thumbnail">
+                      <div class="choose-ok"></div>
+                      <span class="style-versions">简约时尚版3</span>
+                    </li>
+                 <li class="style-inner-item " data-id="5442263a0cf2233e24c51648" data-cate="时尚">
+                        <img data-src="../addons/amouse_ecard/style/images/template/ss4.jpg?t=1414413120184" class="style-item-thumbnail">
+                      <div class="choose-ok"></div>
+                      <span class="style-versions">简约时尚版4</span>
+                    </li>
+                 <li class="style-inner-item " data-id="544226630cf2233e24c51649" data-cate="时尚">
+                        <img data-src="../addons/amouse_ecard/style/images/template/s23.jpg?t=1414413432713" class="style-item-thumbnail">
+                      <div class="choose-ok"></div>
+                      <span class="style-versions">简约时尚版5</span>
+                    </li>
+                 <li class="style-inner-item " data-id="544226970cf2233e24c5164a" data-cate="时尚">
+                        <img data-src="../addons/amouse_ecard/style/images/template/s56.jpg?t=1414413461123" class="style-item-thumbnail">
+                      <div class="choose-ok"></div>
+                      <span class="style-versions">简约时尚版6</span>
+                    </li>-->
+		       </ul>
+            <ul class="style-inner clearfix item" data-id="simple">
+                   <li class="style-inner-item {if $card['templateFile']=='simple1'}current{/if}" data-id="simple1" data-cate="简约">
+                        <img data-src="../addons/amouse_ecard/style/images/template/s25.jpg?t=1414407436362" class="style-item-thumbnail">
+                        <div class="choose-ok"></div>
+                        <span class="style-versions">简约版1</span>
+                     </li>
+                 <li class="style-inner-item {if $card['templateFile']=='simple3'}current{/if}" data-id="simple3" data-cate="简约">
+                        <img data-src="../addons/amouse_ecard/style/images/template/s45.jpg?t=1414413508338" class="style-item-thumbnail">
+                        <div class="choose-ok"></div>
+                        <span class="style-versions">简约版3</span>
+                     </li>
+                <!--  <li class="style-inner-item " data-id="54423b0c0cf2233e24c5169a" data-cate="简约">
+                       <img data-src="../addons/amouse_ecard/style/images/template/s1.jpg?t=1414413483514" class="style-item-thumbnail">
+                     <div class="choose-ok"></div>
+                     <span class="style-versions">简约版2</span>
+                   </li>-->
+            </ul>
+
+            <ul class="style-inner clearfix item" data-id="momentos">
+		       <li class="style-inner-item {if $card['templateFile']=='momentos2'}current{/if}" data-id="momentos2" data-cate="时光">
+			      	<img data-src="../addons/amouse_ecard/style/images/template/07.jpg?t=1414466648193" class="style-item-thumbnail">
+			        <div class="choose-ok"></div>
+			        <span class="style-versions">时光版</span>
+		     	 </li>
+		        <li class="style-inner-item {if $card['templateFile']=='momentos1'}current{/if}" data-id="momentos1" data-cate="时光">
+			      	<img data-src="../addons/amouse_ecard/style/images/template/6.jpg?t=1428575518696" class="style-item-thumbnail">
+			        <div class="choose-ok"></div>
+			        <span class="style-versions">时光版</span>
+		     	 </li>
+		       <!--<li class="style-inner-item " data-id="544f55540cf2afa387ad1a4c" data-cate="时光">
+			      	<img data-src="../addons/amouse_ecard/style/images/template/3.jpg?t=1414547070342" class="style-item-thumbnail">
+			        <div class="choose-ok"></div>
+			        <span class="style-versions">时光版</span>
+		     	 </li>
+		       <li class="style-inner-item " data-id="544f55e40cf2afa387ad1aa8" data-cate="时光">
+			      	<img data-src="../addons/amouse_ecard/style/images/template/1.jpg?t=1414486865850" class="style-item-thumbnail">
+			        <div class="choose-ok"></div>
+			        <span class="style-versions">时光版</span>
+		     	 </li>
+		       <li class="style-inner-item " data-id="544f56350cf2afa387ad1ad3" data-cate="时光">
+			      	<img data-src="../addons/amouse_ecard/style/images/template/4.jpg?t=1414486847938" class="style-item-thumbnail">
+			        <div class="choose-ok"></div>
+			        <span class="style-versions">时光版</span>
+		     	 </li>
+		       <li class="style-inner-item " data-id="544f567e0cf2afa387ad1afe" data-cate="时光">
+			      	<img data-src="../addons/amouse_ecard/style/images/template/5.jpg?t=1414486816676" class="style-item-thumbnail">
+			        <div class="choose-ok"></div>
+			        <span class="style-versions">时光版</span>
+		     	 </li>
+		       <li class="style-inner-item " data-id="544f56bb0cf2afa387ad1b19" data-cate="时光">
+			      	<img data-src="../addons/amouse_ecard/style/images/template/2.jpg?t=1414486830773" class="style-item-thumbnail">
+			        <div class="choose-ok"></div>
+			        <span class="style-versions">时光版</span>
+		     	 </li>-->
+		       </ul>
+
+		</div>
+    
+    </div>
+    
+    
+  </section>
+  <!--#=end column--> 	
+  <div class="create-next create-position">
+  	<a class="create-next-btn" href="javascript:" onclick="selectTemplate()">完 成</a>
+  </div>
+</div>
+<!--#=end page--> 
+
+<!--#start JS--> 
+<script src="../addons/amouse_ecard/style/js/jquery.1.11.1.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/flytip.js?v=201504101043"></script>
+<script src="../addons/amouse_ecard/style/js/scrollLoad.js?v=201504101043"></script>
+ 
+<script>
+//选择模板
+function selectTemplate() {
+	var curLi = $("#styleList").find(".current");
+	if(curLi && curLi.length>0) {
+		var templateId = curLi.data("id");
+        var wid='{$from_user}';
+        var mid={$id};
+        var pushUrl = "{php echo murl('entry//setTemplate',array('m'=>'amouse_ecard'),true)}";
+        $.ajax({
+            "type": "post",
+            "url": pushUrl,
+            "data": {"templateId":templateId, "wid": wid,"mid":mid},
+            "dataType": "json",
+            "success": function(data){
+                if(data.success){
+                    if(data.status == 1){
+                        $.flytip("设置成功！");
+                       setTimeout(tiaozhuan(data.guanzhuUrl),30000);
+                    }
+                    if(data.status == 0){
+                        $.flytip("您还没有建立微名片，马上为您跳转到帮助链接");
+                        setTimeout("tiaozhuan('"+data.guanzhuUrl+"')",3000)
+                    }
+                    if(data.status == 2){
+                        $.flytip("设置失败，可能是网络有问题？");
+                    }
+                }else{
+                    $.flytip("设置失败，可能是网络有问题？");
+                }
+            }
+        });
+	} else {
+		$.flytip("请选择名片模板！");
+	}
+}
+
+function tiaozhuan(url){
+    window.location.href=url;
+}
+$(document).ready(function(e) {
+	var $tempsList = $("#tempsList");
+	var $tempsUlItem = $tempsList.find(".style-inner");
+	var $tempsListItem = $tempsList.find(".style-inner-item");
+	var $tempsThumb =  $tempsList.find(".style-item-thumbnail");
+	//vtab
+	var $tempsbox = $(".tempsbox");
+	var $tempsboxTitTtem = $tempsbox.find(".vtab-title .item");
+	$tempsboxTitTtem.click(function(){
+		var $this = $(this);
+		var thisId = $this.data("id");
+		$this.addClass("cur").siblings().removeClass("cur");
+		$tempsUlItem.each(function(){
+			var $item = $(this);
+			var itemId = $item.data("id");
+			if(itemId === thisId){
+				$item.show().siblings("ul").hide();
+			}
+		});
+	});
+	
+	$tempsboxTitTtem.eq(0).click();
+	//tempsList
+	var styleIitem = $tempsList.find(".style-inner-item");
+	//选中打钩
+	styleIitem.on("click",function(){
+		var $tihs = $(this);
+		styleIitem.removeClass("current");
+		$tihs.addClass("current");
+	});
+
+	$tempsThumb.each(function(){
+		var $this = $(this);
+		$this.attr("src",$this.data("src"));
+	});
+
+ });
+</script>
+<!--#end JS-->
+</body>
+</html>

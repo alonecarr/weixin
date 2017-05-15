@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.efwww.com" versionCode="0.6">
+	<application setting="false">
+		<name><![CDATA[简单预约]]></name>
+		<identifie><![CDATA[boyhood_book]]></identifie>
+		<version><![CDATA[1.5]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[简单预约]]></ability>
+		<description><![CDATA[简单预约]]></description>
+		<author><![CDATA[易福网]]></author>
+		<url><![CDATA[http://www.efwww.com/]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+		<card embed="false" />
+	</platform>
+	<bindings>
+		<menu>
+			<entry title="预约管理" do="manage" state="" direct="false" />
+		</menu>
+	</bindings>
+	<install><![CDATA[CREATE TABLE IF NOT EXISTS `ims_boyhood_book_cate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_boyhood_book_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT NULL,
+  `cate` int(11) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `thumb` varchar(200) DEFAULT NULL,
+  `oprice` float(11,2) DEFAULT NULL COMMENT '原价',
+  `nprice` float(11,2) DEFAULT NULL COMMENT '现价',
+  `content` text COMMENT '属性',
+  `displayorder` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_boyhood_book_record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT NULL,
+  `rid` int(11) DEFAULT NULL,
+  `lid` int(11) DEFAULT NULL,
+  `realname` varchar(100) DEFAULT NULL,
+  `mobile` varchar(15) DEFAULT NULL,
+  `visitetime` varchar(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  `createtime` varchar(11) DEFAULT NULL,
+  `openid` varchar(64) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `ims_boyhood_book_rule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT NULL,
+  `rid` int(11) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `thumb` varchar(200) DEFAULT NULL,
+  `description` text,
+  `starttime` varchar(11) DEFAULT NULL,
+  `endtime` varchar(11) DEFAULT NULL,
+  `sharetitle` varchar(200) DEFAULT NULL,
+  `sharethumb` varchar(200) DEFAULT NULL,
+  `sharedesc` text,
+  `cate` int(11) DEFAULT NULL COMMENT '预约内容列表',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+]]></install>
+	<uninstall><![CDATA[DROP TABLE IF EXISTS `ims_boyhood_book_cate`;
+DROP TABLE IF EXISTS `ims_boyhood_book_list`;
+DROP TABLE IF EXISTS `ims_boyhood_book_record`;
+DROP TABLE IF EXISTS `ims_boyhood_book_rule`;
+]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

@@ -1,0 +1,375 @@
+/*----------------------------------------------------
+ 元素：基本样式
+-----------------------------------------------------*/
+html,body {
+  position: relative;
+  font-family: "Microsoft YaHei";
+  color: #fff;
+  line-height: 24px;
+  overflow-x: hidden;
+  max-width: 640px;
+  margin: 0 auto;
+}
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+.vertical-m{
+	vertical-align: middle;	
+}
+.clearfix:before, .clearfix:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after {
+  clear: both;
+}
+.pb45{
+	padding-bottom: 45px;
+}
+.text-rt{
+	text-align: left
+}
+/*--------------------------
+ 元素：首页
+---------------------------*/
+.card-home .card-page{
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.card-home .home-inner{
+	text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+}
+.card-home .home-box-stat{
+	position: absolute;
+	left: 15px;
+	top: 15px;
+	z-index: 100;
+	display: box;
+	display: -webkit-box;
+}
+.card-home .home-box-item{
+	position: relative;
+	text-align:center;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 10px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 16px;
+	background: rgba(0,0,0,.4);
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	margin-right: 15px;
+}
+.card-home .home-box-item a{
+	position: relative;
+	padding-left: 26px;
+	color: #fff;
+	display: inline-block;
+}
+.card-home .home-box-item .item-round{
+	position: absolute;
+	left: -8px;
+	top: 1px;
+	width: 28px;
+	height: 28px;
+	display: block;
+	border-radius: 14px;
+	-webkit-border-radius: 14px;
+	background: rgb(0,0,0);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,.4)), color-stop(100%,rgba(0,0,0,1)));
+	background: -webkit-linear-gradient(270deg, rgba(255,255,255,.4) 0%, rgba(0,0,0,1) 100%);
+	background: -ms-linear-gradient(180deg, rgba(255,255,255,.4) 0%, rgba(0,0,0,1) 100%);
+	background: -moz-linear-gradient(180deg, rgba(255,255,255,.4) 0%, rgba(0,0,0,1) 100%);
+	background: linear-gradient(180deg, rgba(255,255,255,.4) 0%, rgba(0,0,0,1) 100%);
+}
+.card-home .home-box-item .home-number{
+	font-family: Arial;
+	font-size: 16px;
+}
+.card-home .ico-hand {
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+	display: inline-block;
+	background: url(../images/simple-3/ico-hand.png) no-repeat;
+	background-size: 15px;
+	margin-top: -3px;
+}
+.card-home .ico-viewed {
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+	display: inline-block;
+	background: url(../images/simple-3/ico-viewed.png) no-repeat;
+	background-size: 15px;
+	margin-top: -3px;
+}
+.card-home .ico-call{
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+	background: url(../images/simple-3/ico-call.png) no-repeat;
+	background-size: 35px;
+	margin: -3px 4px 0 0;
+}
+.card-home .home-box-banner{
+	position: relative;
+	height: 372px;
+	overflow: hidden;
+}
+.card-home .home-box-banner .home-pic{
+	width: 100%;
+	display: block;
+}
+.card-home .home-inner-basic{
+	position: absolute;
+	top:85px;
+	left: 30%;
+	width: 70%;
+	min-height: 130px;
+}
+.card-home .home-box-basic{
+	position: absolute;
+	left: 23px;
+	top: 288px;
+}
+.card-home .content-item-anchor{
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 104px;
+	height: 104px;
+}
+.card-home .home-avatar{
+	width: 100px;
+	height: 100px;
+	border: 2px solid rgba(255,255,255,.3);
+	border-radius: 52px;
+	-webkit-border-radius: 52px;
+	box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+	-webkit-box-shadow: 1px 1px 4px rgba(0,0,0,.3);
+}
+.card-home .home-avatar-thumbnail{
+	width: 100px;
+	height: 100px;
+	display: block;
+	border-radius: 50px;
+	-webkit-border-radius: 50px;
+}
+.card-home .home-ewm{
+	position: absolute;
+	top: 15px;
+	right: 40px;
+	width: 32px;
+	height: 32px;
+	background: #fff;
+	border-radius: 16px;
+	-webkit-border-radius: 16px;
+	box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+	-webkit-box-shadow: 1px 1px 4px rgba(0,0,0,.5);
+}
+.card-home .ico-ewm{
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	margin: 5px 0 0 5px;
+	background: url(../images/ico-ewm.png) no-repeat;
+	background-size: 22px;
+	vertical-align: middle;
+	display: inline-block;
+}
+.card-home .home-name{
+	position: absolute;
+	left: 118px;
+	top: 76px;
+	vertical-align: middle;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	height: 24px;
+	overflow: hidden;
+}
+.card-home .home-text{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	font-size: 12px;
+	width: 110px;
+	text-align: center;
+	height: 17px;
+	line-height: 17px;
+	overflow: hidden;
+}
+.card-home .text-phone{
+	position: absolute;
+	left: 120px;
+	bottom: 0;
+	display: block;
+	height: 17px;
+	line-height: 17px;
+	overflow: hidden;
+	font-size: 12px;
+	letter-spacing: 1px;
+	font-family: Arial;
+}
+.card-home .text-call{
+	position: absolute;
+	top: 5px;
+	left: 122px;
+	display: block;
+	text-align: center;
+	color: inherit;
+	font-size: 12px;
+}
+.card-home .text-call .ico-call{
+	display: block;
+	margin: 0 auto;
+}
+.card-home .home-company{
+	position: absolute;
+	left: 23px;
+	top: 238px;
+	font-size: 18px;
+	font-weight: bold;
+	max-height: 48px;
+	overflow: hidden;
+}
+.card-home .home-box-row{
+	position: relative;
+	font-family:Arial,"Microsoft YaHei";
+	font-size: 12px;
+	line-height: 16px;
+	padding-left: 38px;
+}
+.card-home .home-box-row .row-absolute{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 38px;
+	height: 16px;
+	line-height: 16px;
+	overflow: hidden;
+	font-weight: normal;
+}
+.card-home .fovorite-inner-item{
+	position: relative;
+	height: 70px;
+	padding: 12px 26px 0 55px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.card-home .line{
+	position: absolute;
+	top: 0;
+	left: 10%;
+	width:80%;
+	height:1px;
+	display:block;
+	background: rgba(255,255,255,.8);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(153,159,159,0)), color-stop(50%,rgba(255,255,255,.8)), color-stop(100%,rgba(153,159,159,0)));
+	background: -webkit-linear-gradient(-45deg,  rgba(153,159,159,0) 0%,rgba(255,255,255,.8) 50%,rgba(153,159,159,0) 100%);
+	background: -moz-linear-gradient(-45deg,  rgba(153,159,159,0) 0%, rgba(255,255,255,.8) 50%, rgba(153,159,159,0) 100%);
+	background: -ms-linear-gradient(-45deg,  rgba(153,159,159,0) 0%,rgba(255,255,255,.8) 50%,rgba(153,159,159,0) 100%);
+	background: linear-gradient(135deg,  rgba(153,159,159,0) 0%,rgba(255,255,255,.8) 50%,rgba(153,159,159,0) 100%);
+}
+.card-home .fovorite-inner-tit{
+	position: absolute;
+	left: 16px;
+	top: 20px;
+	width: 36px;
+	line-height: 16px;
+	font-size: 13px;
+	color: #474747;
+	text-shadow: none;
+}
+.card-home .fovorite-inner-box{
+	height: 50px;
+	overflow: hidden;
+}
+.card-home .fovorite-people{
+	width: 48px;
+	height: 48px;
+	dispaly: block;
+	border: 1px solid rgba(255,255,255,.6);
+	float: left;
+	margin: 0 4px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.card-home .fovorite-people-thumbnail{
+	width: 48px;
+	height: 48px;
+	display: block;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+.card-home .fovorite-item-link{
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	margin-top: -12px;
+}
+.fovorite-text-inner{
+	padding:10px 0 10px 16px;
+	margin-right: 10px;
+	color: #474747;
+	text-shadow: none;
+}
+.fovorite-text-inner .info--text-item{
+	position: relative;
+	min-height: 18px;
+	line-height: 18px;
+	font-size: 13px;
+	padding: 3px 0 3px 60px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+.fovorite-text-inner .info-name-tit{
+	position: absolute;
+	left: 0;
+	top: 3px;
+	width: 60px;
+}
+/*微信二维码提示层*/
+.wxQrcodeTipMe{
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	z-index: 99999;
+	width: 100%;
+	height: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	background-color: rgba(0,0,0,.8);
+	background-image: url("../images/simple-3/wxQrcodeTipMe.png");
+	background-repeat: no-repeat;
+	background-position: center 180px;
+	background-size: 200px;
+	display: none;
+}
+.wxQrcodeTipTa{
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	z-index: 99999;
+	width: 100%;
+	height: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	background-color: rgba(0,0,0,.8);
+	background-image: url("../images/simple-3/wxQrcodeTipTa.png");
+	background-repeat: no-repeat;
+	background-position: center 180px;
+	background-size: 200px;
+	display: none;
+}

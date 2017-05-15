@@ -1,0 +1,100 @@
+html,body{max-width:100% !important; min-height:100%;}
+
+body{background:#fff8dc; font-size:0.25rem;}
+.bg1{background:url(../images/pic_001.png) no-repeat fixed top center #fff8dc; background-size:100% 100%;}
+.bg1:before {content:''; position: fixed; z-index: -1; top: 0; right: 0; bottom: 0;left: 0;background: url(../images/pic_001.png) no-repeat top center #fff8dc; background-size: 100% 100%;}
+.bg2{background:url(../images/pic_012.png) no-repeat top center #f00a38; background-size:100% auto;}
+
+.txtid{font-size:0.25rem; color:#f00a38; font-weight:normal; text-align:right; padding:0.4rem 0.2rem 0;}
+.vip-title{display:block; margin:auto; width:3.47rem; height:1.65rem;}
+.vip-status{border:0.04rem solid #ed0a37; font-size:0.37rem; color:#ed0a37; width:3rem; text-align:center; line-height:0.65rem; height:0.65rem; display:block; margin:auto; border-radius:0.1rem; margin-top:0.4rem;margin-bottom: 0.3rem;text-decoration:underline }
+
+.vip-main{width:4.08rem; margin:auto; /*margin-top:0.3rem;*/ margin-bottom:0.3rem;}
+.vip-main .hd{width:4.08rem; background:url(../images/pic_003.png) no-repeat; height:0.39rem; background-size:100% 100%;}
+.vip-main .bd{width:4.08rem; background:url(../images/pic_004.png) no-repeat; background-size:100% 100%; padding:0.05rem 0;}
+.vip-main .bd a.qrcodebtn{display:block; color:#ffffff; font-size:0.33rem; text-align:center; padding:0.35rem 0;} 
+.vip-main .bd span.qrcode{ display:block; margin:0 0.44rem;}
+.vip-main .bd span.qrcode img{ display:block; width:100%;}
+.vip-main .ft{width:4.08rem; background:url(../images/pic_005.png) no-repeat; height:0.39rem; background-size:100% 100%;}
+
+.vip-bag{background:url(../images/pic_006.png) no-repeat; background-size:100% 3.79rem; width:100%; height:2.09rem; color:#f00a38; font-size:0.27rem; text-align:center; overflow:hidden; border-bottom-color:#f00a38; border-bottom-style:solid;}
+.vip-bag p{margin-top:0.3rem;}
+
+.yj-title{display:block; margin:auto; width:3.15rem; height:1.08rem;}
+.yj-main{width:5.6rem; margin:auto; margin-top:0.32rem;}
+.yj-main .yj-list{ border:0.04rem solid #f00a38; border-radius:0.15rem; background:#ffffff; margin-bottom:0.23rem; padding:0.1rem 0.23rem 0.23rem; overflow:auto;}
+.yj-main .yj-list table{width:100%; text-align:center; font-size:0.27rem;}
+.yj-main .yj-list table th{font-weight:normal; font-size:0.29rem;}
+.yj-main .yj-list table th, .yj-main .yj-list table td{ border-bottom:0.02rem dashed #7f7f7f; padding:0.1rem 0; color:#333333;}
+.yj-main .yj-list table td a.wcf{ color:#f90909;}
+.yj-main .yj-list table td a.ycf{ color:#333333;}
+.yj-main .yj-list a.morebtn{display:block; color:#323232; background:#ffde7f; text-align:center; height:0.5rem; line-height:0.5rem; margin-top:0.23rem;}
+.yj-main a.godzpbtn{display:block; background:url(../images/pic_009.png) no-repeat; background-size:100% 100%; height:0.6rem; line-height:0.6rem; text-align:center; font-size:0.31rem; color:#ffffff;}
+
+.footer{position:fixed; width:100%; left:0; bottom:0; background:#333333; height:0.7rem; line-height:0.7rem; z-index:1000;}
+.footer ul li{ float:left; width:20%; text-align:center;}
+.footer ul li a{ display:block; border-left:1px solid #969696; color:#ffffff; font-size:0.29rem;}
+.footer ul li:nth-child(1) a{border-left:none;}
+.footer ul li a.on{color:#ffea5f;}
+.footer ul li:nth-child(2) a{ background:url(../images/pic_menu_new.png) no-repeat 0.15rem center; background-size:0.20rem 0.2rem;}
+
+/* 大转盘样式 */
+.dzp-title{display:block; margin:auto; width:4.47rem; height:2.01rem; margin-top:-0.1rem;}
+.dzp{background:url(../images/pic_012.png) no-repeat top center #f00a38; background-size:100% auto; overflow-x:hidden;}
+.dzp-box{display:block;width:4.8rem;margin-left:auto;margin-right:auto;margin-bottom:0.45rem; margin-top:-0.05rem;}
+.dzp-box .turnplate{display:block;width:100%;position:relative;}
+.dzp-box .turnplate canvas.item{width:100%; position:relative; z-index:50;}
+.dzp-box .turnplate canvas.pointer{position:absolute;width:1.78rem;height:3.3rem;left:50%;top:50%; margin:-1.65rem 0 0 -0.89rem; z-index:100; background:url(../images/turnplate-pointer.png) no-repeat; background-size:100% 100%;}
+
+.dzp-main{ overflow:hidden;/* margin-bottom:1rem;*/}
+.dzp-main a.advdi{ width: 3.5rem;/* height: 0.77rem; *//* line-height: 0.77rem; */display: block;text-align: center;
+    color: #333333; font-size: 0.3rem; background-size: 100% 100%;  margin: auto; /* margin-bottom: 0.1rem; */}
+.dzp-main a.zfbtn{ background:url(../images/pic_013.png) no-repeat; width:2.95rem; height:0.57rem; line-height:0.57rem; display:block; text-align:center; color:#333333; font-size:0.3rem; background-size:100% 100%; margin:auto; margin-top:0.2rem; margin-bottom:0.3rem;}
+.dzp-main a.zfbtn span{ margin:0 0.1rem; color:#f00a38;}
+.dzp-main a.yzfbtn{ background:url(../images/pic_014.png) no-repeat; width:2.95rem; height:0.57rem; line-height:0.57rem; display:block; text-align:center; color:#f00a38; font-size:0.3rem; background-size:100% 100%; margin:auto; margin-top:0.2rem; margin-bottom:0.3rem;}
+.dzp-main a.yzfbtn span{ margin:0 0.1rem; color:#f00a38;}
+.dzp-main .dzp-note{width:5.1rem; border-radius:0.1rem; background:#ffffff; margin:auto; padding:0.2rem; color:#333333;}
+.dzp-main .dzp-note h4{ font-size:0.33rem; font-weight:normal; color:#f00a38;}
+.dzp-main .dzp-note p{ font-size:0.25rem; margin-top:0.05rem;}
+.dzp-main a.vipbtn{ background:url(../images/pic_013.png) no-repeat; width:3.5rem; height:0.77rem; line-height:0.77rem; display:block; text-align:center; color:#333333; font-size:0.3rem; background-size:100% 100%; margin:auto; margin-top:1.2rem; margin-bottom:0.13rem;}
+.dzp-main a.qcode { background:url(../images/pic_013.png) no-repeat; width:3.5rem; height:0.77rem; line-height:0.77rem; display:block; text-align:center; color:#333333; font-size:0.3rem; background-size:100% 100%; margin:auto; margin-top:0.2rem; margin-bottom:0.3rem;}
+.dzp-main a.bonusbtn{ width:3.5rem; height:0.77rem; line-height:0.77rem; display:block; text-align:center; color:#333333; font-size:0.3rem; background-size:100% 100%; margin:auto;text-decoration:underline;font-size: 0.35rem}
+
+
+
+.jiang-page{ position:relative; width:6.4rem; margin:auto;}
+.jiang-page .closebtn{background:url(../images/pic_017.png) no-repeat; display:block; width:0.39rem; height:0.39rem; background-size:100% 100%; position:absolute; top:0; right:50%; margin-right:-2.48rem; text-indent:-999rem;}
+.jiang-page .jiang-box{ background:url(../images/pic_015.png) no-repeat; width:6.4rem; background-size:100% 4.09rem; height:4.09rem; overflow:hidden;}
+.jiang-page .jiang-box .jiang{background:#ffffff; border-radius:0.15rem; padding:0.15rem; color:#ff1141; text-align:center; width:2.3rem; margin:auto; margin-top:2.5rem; font-size:0.3rem; line-height:1.2;}
+.jiang-page .jiang-box .jiang span{display:block; font-size:0.48rem;}
+.jiang-page p{text-align:center; color:#fcc707; font-size:0.25rem; line-height:1.8; margin-top:0.15rem;}
+.jiang-page a.jxbtn{ display:block; width:2.61rem; height:0.71rem; margin:auto; margin-top:0.2rem;}
+.jiang-page a.jxbtn img{ display:block; width:2.61rem; height:0.71rem;}
+
+#ewm{  width:100%;height:100%;position:absolute;top:0;left:0;z-index: 999;background:#000000;display:none;z-index: 99999;}
+#ewm .codebg{ text-align:center;}
+#ewm .codebg span{ color: white;}
+#zzc img,#gz img,#dl img,#ewm img,#showqcode img{width:100%;} 
+
+.gundong{position: absolute;    top: 0;    width: 100%;    height: 0.4rem;    background: rgba(224, 142, 142, 0.66);}
+.gundong ul li em{color: #EA1225;}
+
+
+/* 整点福利 */
+.zdf{background:url(../images/zhengdian.jpg) no-repeat top center #fdde46;height: 100%; background-size:100% auto; overflow-x:hidden;}
+.zdf .logo{background:url(../images/zdlogo.png) no-repeat;width:6rem;height: 3.5rem;display: block;margin: 0.4rem 0.5rem}
+.zdf .trip{width: 6rem;display: block;margin: 1.7rem 0.2rem;}
+.zdf .trip .syhbr{margin-left: 1.8rem;}
+.zdf .trip .syhbr img{width: 60%;}
+.zdf .trip .nums{width: 3rem}
+.zdf .trip .nums li{float: left;width: 2.7rem;height: 0.8rem;background: #fff4c1;margin-left: 0.2rem;margin-top: 0.2rem;}
+.zdf .trip .nums li a{color: #e70404;font-size: 0.7rem;margin: 0.2rem 0.8rem;}
+.zdf .combtn a{width: 100%;height: 2rem;}
+.zdf .combtn .jxbtn{background:url(../images/zdstart.png) no-repeat;width:6rem;height: 3.5rem;display: block;    margin: 0 0.2rem;}
+
+.zd-main{ margin:auto; /*margin-top:0.3rem;*/ margin-bottom:0.3rem;}
+.zd-main .bd{display: none; height: 1rem;background:url(../images/zdstart.png) no-repeat; background-size:100% 100%; padding:0.05rem 0;}
+.zd-main .wait{    height: 1rem;background:url(../images/zdwait.png) no-repeat; background-size:100% 100%; padding:0.05rem 0;}
+.zd-main a.zdbtn{display:block; text-align:center; text-fill-color:#fedf60;color:#fedf60; font-size:0.5rem; margin:auto; margin-top:0.15rem; margin-bottom:0.3rem;}
+.zd-main a.waita{display:block; text-align:center; text-fill-color:#fedf60;color:#fedf60; font-size:0.5rem; margin:auto; margin-top:0.15rem; margin-bottom:0.3rem;}
+.dialog-box{display:none;}

@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+.pay2,.kefu2{ width:80%; margin:0 auto; background:#FFF; padding:5%; border-radius:5px;}
+.pay2 .ptxt1{ text-align:center; color:#d2413e; font-size:18px;; font-weight:bold; line-height:30px;}
+.pay2 .ptxt2{ text-align:center; color:#d99c6d; font-size:16px;; line-height:23px;}
+.pay2 .ptxt3{ color:#5d5d5d; line-height:40px;}
+.pay2 .ptxt4{ text-align:center; color:#F60; line-height:60px;}
+.pay2 .ptxt4 .price{ font-size:50px;}
+.pay2 .ptxt5,.pay2 .ptxt6{ border-radius:5px; color:#FFF; width:200px; line-height:40px; margin:0 auto; text-align:center;}
+.pay2 .ptxt5{background:#3cb034;}
+.pay2 .ptxt6{ background:#d84e43}
+.hb1{ background:#d62128; border-radius:5px; width:90%; margin:0 auto;}
+.hb1 p{ color:#FFF; line-height:30px; text-align:center;}
+.hb1 li{ float:left; color:#fee30e; text-align:center; width:33.3%; line-height:30px;}
+.hb2{ width:90%; margin:0 auto; margin-top:20px;}
+.hb2:after { content: " "; clear: both; display: block; height: 0; visibility: hidden; }
+.hb2 li{ float:left; text-align:center; width:20%; position:relative; }
+.hb2 li img{ width:98%;}
+.hb2 li p{ position:absolute; text-align:center; left:0; right:0; top:40%; color:#FFF;}
+.hb2 li .xian{ display:none;}
+.hb4 {width:90%; margin:0 auto; height:30px; margin-bottom:6px; overflow:hidden; background:#6d0f0f; color:#FFF; border-radius:5px;}
+.hb4 ul li{ height:30px; line-height:30px; padding:0 5px; text-align:center; color:#FF9900}
+
+/*
+.yongjin1{background:#FFF; border-radius:5px; width:90%; margin:0 auto;}
+.yongjin1 .title{ text-align:center; line-height:40px; font-size:18px; color:#cf5152; font-weight:bold;}
+.yongjin1 li p{ float:left; width:25%; text-align:center; line-height:30px;}
+.yongjin1 li:after { content: " "; clear: both; display: block; height: 0; visibility: hidden; }
+.yongjin1 #getmore{ text-align:center; line-height:30px;}
+*/
+.yongjin1{text-align:center; line-height:40px; font-size:18px; color:#cf5152; font-weight:bold;}
+.yongjin2 .items{ background:#FFF; margin:0 auto; width:90%; border-radius:5px; line-height:23px; padding:5px; box-sizing:border-box;border: 1px solid #ccc; color:#666; position:relative; margin-bottom:10px;}
+.yongjin2 .items .title{ border-bottom:#CCC 1px dashed; line-height:40px;}
+.yongjin2 .items .qian{ color:#F60;}
+.yongjin2 .items .xiang{ float:right; margin-right:10px; color:#F00; font-weight:bold;}
+.yongjin2 ul{border-top: 1px dashed #ccc; display:none;}
+.yongjin2 li p{ float:left; width:33.33%; text-align:center; line-height:30px;}
+.yongjin2 li:after { content: " "; clear: both; display: block; height: 0; visibility: hidden; }
+.yongjin3 {background:#FFF; margin:0 auto; width:90%; border-radius:5px; line-height:23px; padding:5px; box-sizing:border-box;border: 1px solid #ccc; color:#666; position:relative; margin-bottom:10px;}
+
+.index1{background:#FFF; border-radius:5px; width:90%; margin:0 auto; padding-top:20px;padding-bottom:20px;}
+.index1 .hblist li{ float:left; width:50%; text-align:center; position:relative; margin-bottom:20px;}
+.index1 .hblist a{ color:#000;}
+.index1 .hblist li img{ width:80%;}
+.index1 .hblist li p{ position:absolute; left:10%; right:10%; top:0}
+.index1 .hblist li p .price{font-size:20px; font-weight:bold; color:#ec0912}
+
+.daili1{width: 80%;margin: 0 auto;border-radius: 5px;padding: 10px;border: 1px solid #960f21;box-shadow: 0px 1px 2px #960f21;}
+.daili1 img{ width:100%;}
+.daili2{ text-align:center;line-height:40px; font-size:18px; color:#cf5152; font-weight:bold;}
+
+.kefu2 .title{ text-align:center; line-height:40px; font-size:18px; color:#cf5152; font-weight:bold;}
+
+.footer{ background:#333333; height:50px; position:fixed; left:0; bottom:0; right:0; line-height:50px;}
+.footer li{ width:20%; text-align:center; float:left;color:#FFF;}
+.footer li a{ color:#FFF;}
+
+
+.msgbox {position:fixed;left:0; right:0; top:0; bottom:0; background-color: rgba(0,0,0,0.5); text-align:center; z-index:9999999; display:none;}
+.msgbox .box{ width:90%; margin:0 auto; margin-top:40%; background:#FFF; border-radius:5px;line-height:40px;padding-bottom:20px;}
+.msgbox .box .title{ color:#666; font-size:18px;}
+.msgbox .box .but{ width:40%; margin:0 auto; text-align:center; color:#FFF; background-color:#0C0; border-radius:5px; margin-top:20px; }
+
+.scroll_div {width: 90%; height: 1.8rem; line-height: 1.8rem; overflow: hidden; white-space: nowrap; background: url(/Public/Images/2/repbg.png) repeat; border-radius: 7px; margin: auto; margin-bottom: 0.5rem;background:#6d0f0f;}
+.scroll_div b {color: #DD8B59; font-size: 0.9rem;}
+.scroll_div p {color: #DD8B59;}
+#scroll_begin,#scroll_end,#scroll_begin p,#scroll_end p {display: inline;}

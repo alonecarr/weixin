@@ -1,0 +1,62 @@
+{template 'common/header'}
+<div class='container' style='padding: 0 5px 10px; margin: 0; width: 100%'>
+    {template 'web/set/tab_header'}
+    <div class="alert alert-info">
+        <kbd>[除入口公众号,其他公众号统一设置借用,借用权限为入口公众号权限]</kbd>
+    </div>
+    <form class="form-horizontal" action="" method="post">
+        <input type='hidden' name='setid' value="{$set['id']}" />
+        <input type='hidden' name='op' value="pay" />
+        <div class="panel panel-success">
+            <div class="panel-heading">授权设置</div>
+            <div class="panel-body">
+                <div class='alert alert-info'>
+                    支付配置<a href='{php echo url('profile/payment')}'>支付选项</a> 去设置好参数。
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">支付方法</label>
+                    <div class="col-sm-9 col-xs-9 col-md-7">
+                        <label class="radio-inline" for="form-iscash-0">
+                            <input type="radio" name="iscash" value="0" id="form-iscash-0" {if $setdata['iscash'] == 0}checked="true"{/if} />微赞收银台支付
+                        </label>
+                        <label class="radio-inline" for="form-iscash-1">
+                            <input type="radio" name="iscash" value="1" id="form-iscash-1" {if $setdata['iscash'] == 1}checked="true"{/if} />原生支付
+                        </label>
+                        <span class="help-block">原生支付就是直接在页面弹出微信支付，不用跳到微赞收银台。
+	         			  原生支付必须在微信后台设置支付授权目录路径如下:<label style="color:red">{$_W['siteroot']}app/</label>
+	         			  </span>
+                    </div>
+                </div>
+                <div class="form-group" id="account">
+                    <label class="col-xs-12 col-sm-3 col-md-2 control-label">借用权限</label>
+                    <div class="col-sm-9 col-xs-12">
+                        <select name="oauthid" class="form-control">
+                            <option value="0">不借用任何权限</option>
+                            {loop $accounts $acid $name}
+                            <option value="{$acid}" {if $setdata['oauthid'] == $acid}selected{/if}>{$name}</option>
+                            {/loop}
+                        </select>
+                        <span class="help-block">在微信公众号请求用户网页授权之前，开发者需要先到公众平台网站的【开发者中心】<b>网页服务</b>中配置授权回调域名。<br>
+                            <mark>并在支付参数中完善相关信息。</mark>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input name="token" type="hidden" value="{$_W['token']}"/>
+                <button type="submit" class="btn btn-success col-sm-2" name="submit" value="提交">
+                    <i class="fa fa-check-circle"></i> 提交
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+　
+

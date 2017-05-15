@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+<meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no">
+<title>加入VIP 永久业绩</title>
+<link rel="stylesheet" type="text/css" href="{RES}css/reset.css">
+<link rel="stylesheet" type="text/css" href="{RES}css/media50px.min.css">
+<script type="text/javascript" src="{RES}js/jquery.js"></script>
+<style>
+	html,body{max-width:100% !important;height: 100%;min-height:100%;}
+body{background:#ce3a37;font-size:0.25rem;min-width:320px;}
+.banner{position:relative;}
+.banner img{display:block;width:100%;}
+.banner span{position:absolute;display:block;width:2.68rem;height:0.58rem;line-height:0.58rem;border-radius:0.58rem;background:#e33335;color:#ede084;font-size:0.39rem;font-weight:bold;text-align:center;top:3.1rem;left:50%;margin-left:-1.34rem;}
+.welcome{display:block;text-align:center;color:#ffffff;font-size:0.31rem;letter-spacing:0.05rem;margin:auto;margin-top:0.07rem;margin-bottom:0.07rem;}
+input{width: 96%;height: 0.5rem;margin-bottom: 4%;background:#fff;border: 1px solid #ffffff;padding:5px;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;font-size: 0.4rem;}
+.form{width: 85%;margin: auto;}
+.applyform{width: 90%;margin: auto;}
+.codeImg-msg{display:block;text-align:center;color:#ffffff;font-size:0.31rem;letter-spacing:0.05rem;margin:auto;margin-top:0.01rem;margin-bottom:0.01rem;}
+#sms{  background: #fc7829;text-shadow: 0 1px 1px rgba(0,0,0,.3);-webkit-border-radius: .5em;-moz-border-radius: .5em;border-radius: .5em;-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    z-index: 999;
+    width: 30%;
+    position: absolute;
+    height: 0.6rem;
+    margin: -0.85rem 3.4rem;}
+#sms .orange{
+	font-size: 0.4rem;
+	color: white;
+	padding:0.5rem;
+}
+.applyform .applybtn{border: solid 1px #941a0c;background: #ffd659;width: 70%;text-align: center;color: #941a0c;font-size: 0.5rem;height:0.4rem;line-height: 0.7rem;}
+.button{display: inline-block;zoom: 1;vertical-align: baseline;margin: 0 3px;outline: none;cursor: pointer;text-align: center;text-decoration: none;padding: .1em 1.7em .8em;text-shadow: 0 1px 1px rgba(0,0,0,.3);-webkit-border-radius: .5em;-moz-border-radius: .5em;border-radius: .5em;-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);box-shadow: 0 1px 2px rgba(0,0,0,.2);}
+.instructions{width: 90%;margin:auto;}
+.instructions h2{margin: .2em .1em;color: #e1e101;font-size: 0.3rem;}
+.instructions p{padding: .4em;color:#fff;font-size: 0.2rem;}
+	
+	
+</style>
+</head>
+<body>
+<div class="banner">
+	<img src="{RES}images/header.jpg" />
+</div>
+ <div class="welcome">申请成为VIP</div>
+
+<div class="apply">
+	<div class="form">
+	<input type="text" maxlength="11" placeholder="请输入您的手机号码" name="mobile" autocomplete="off" id="mobile" />
+
+	</div>
+	<div class="codeImg-msg"></div>
+	<div class="applyform"><a class="applybtn button" href="javascript:apply();">立即申请</a></div>
+</div>
+
+<div class="instructions">
+	<h2>VIP说明：</h2>
+	<p>下线每次支付将获得{$set['sys']['commission']}%佣金，佣金于隔天10点发放;</p>
+	<p>输入您的手机，即可申请VIP资格，VIP即可获取永久业绩;</p>
+	<p>请输入真实手机，如虚假佣金将停止发放;</p>
+	<p>心动不如行动，快快动起来吧！</p>
+</div>
+<script type="text/javascript">
+//提交审核
+function apply(){
+	var mobile=$("#mobile").val();
+	var str = mobile.replace(/^\s+|\s+$/g,"");
+	var reg = /^1[3|4|5|7|8][0-9]\d{8}$/;
+	if(str==''){
+   	 	$('.codeImg-msg').html('手机号码不能为空');
+    	return false;
+	}
+	if(!reg.test(str)){
+    	$('.codeImg-msg').html('手机号码格式不正确');
+    	return false;
+	}
+	var url ="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('apply',array('fansid'=>$fansid)), 2)}";
+	$.ajax({
+	    url: url ,
+	    type:'GET',
+	    dataType:'json',
+	    data:'mobile='+str,
+	    success: function(res){
+			if(res.code=="0"){
+	      		$('.codeImg-msg').html(res.msg);
+	      		$('.codeImg-msg').show();
+	          	return false;
+			}else{	
+				$('.codeImg-msg').hide();
+	       		alert(res.msg);
+	       		location.href = "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('vip',array('mid'=>pencode($fansid))), 2)}";
+		    }
+		}
+	}); 
+}
+</script>
+<script>
+//触屏--------------------------
+var touchPageYStart = 0;
+try{
+    if($.isFunction(eval(etouch))){
+        var touch = etouch;
+    }
+}catch(e){
+    var touch = function (event){  
+        var event = event || window.event;
+        var eot = event.touches[0];
+        switch(event.type){  
+            case "touchstart":  
+                touchPageYStart = eot.clientY;
+                break;  
+            case "touchend":
+                break;  
+            case "touchmove":  
+                var stTmp = $("body").scrollTop();
+                $("body").scrollTop(stTmp + (touchPageYStart - eot.clientY));
+                touchPageYStart = eot.clientY;
+                event.preventDefault();
+                break;  
+        } 
+    }
+}    
+document.addEventListener('touchstart',touch, false);
+document.addEventListener('touchend',touch, false);
+document.addEventListener('touchmove',touch, false); 
+function onBridgeReady(){
+ WeixinJSBridge.call('hideOptionMenu');
+}
+
+if (typeof WeixinJSBridge == "undefined"){
+    if( document.addEventListener ){
+        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    }else if (document.attachEvent){
+        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    }
+}else{
+    onBridgeReady();
+}
+</script>
+</body>
+</html>

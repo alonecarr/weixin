@@ -1,0 +1,52 @@
+@charset "utf-8";*{margin:0;padding:0;}
+body,button,input,select,textarea{font-size:12px;font-family:arial,微软雅黑;}
+:focus{outline:0;}
+img{border:0;}
+ul,li{list-style:none;}
+div,ul,li,dl,dt,dd,table,td,input{font-size:12px;}
+input,select,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-appearance:none;border:0;border-radius:0;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-block;}
+* html .clearfix{height:1%;}
+.clearfix{display:block;}
+.clear{clear:both;}
+.orange{color:#f60;}
+.red{color:#f00;}
+.blue{color:#2Af;}
+.btnOrange,.btnBlue{color: #FFF;background: #f60;border-radius: 5px;display: inline-block;text-align: center;text-decoration: none;line-height: 35px;font-size: 18px;}
+.btnBlue{background: #2af;}
+body{background: #e05449;}
+.hpsInfo,.hpsNew,.hpsOpen{width: 100%;position: relative;}
+.divHpsInfo{width: 100%;position: relative;}
+.hpsNew,.hpsOpen{display: none;text-align: center;}
+.hpsNew img,.hpsOpen img{width:90%;position:relative;margin: 5%;}
+.hpsHeaderImg{width:100%;position: relative;}
+.logoImg {width: 22.5%;height: 78%;border-radius: 50%;position: absolute;top: 11.5%;left: 38.7%;}
+.memInfo{width:300px;margin: 2px auto;color: #FFF;text-align: center;}
+.memBody{width:80%;margin: 2px auto;background: #FFF;border-radius: 5px;padding: 10px;border: 1px solid #bf1608;box-shadow: 0px 1px 2px #af4037;color:#555;text-align: center;}
+.btnMore{width:100%;text-align: center;font-size: 14px;color: #000;margin-top: 10px;}
+.goTime{display: inline-block;width: 50%;}
+.hpsMoney{display: inline-block;width: 20%;text-align: center;}
+.hpsStatus{display: inline-block;width: 30%;text-align: right;}
+.ulList li{border-bottom: #e05449 1px dashed;line-height: 30px;}
+.hpsOpen{display: none;}
+.hpsCode img{width: 50%;}
+.ulList li{border-bottom: #e05449 1px dashed;line-height: 30px;}
+.hpsOpenMoney{color: #ffe1b1;font-size: 18px;width: 100%;text-align:center;top:50%;position: absolute;}
+.hpsOpenMoneyMore{position: absolute;bottom: 50px;right: 50px;color: #ffe1b1;height: 20px;}
+.qrcode{-webkit-box-sizing:border-box;height:43px;line-height:43px;text-align:center;color:#fff!important;border-radius:5px;font-size:18px;display:inline-block;background:#f60;text-decoration: none;width:90%;}
+.imgLogo{height: 45%;border-radius: 50%;}
+.divLogo{width: 100%;height:100%;position: absolute;top:28%;text-align: center;}
+.divAlert{position:absolute;top:50%;left:50%;margin:-50px 0 0 -100px;width:200px;height:100px;border:1px solid #CCC;font-size:16px;text-align:center;z-index:99;-webkit-box-sizing:border-box;border-radius:5px;background:#FFF;color:#FFF;}
+.divAlertMsg{float: left;text-align: center;width: 100%;font-size: 16px;color: #555;height: 60px;line-height: 40px;}
+.divAlertBtn a{-webkit-box-sizing:border-box;height:30px;line-height:30px;text-align:center;color:#fff!important;border-radius:5px;font-size:14px;display:inline-block;background:#f60;text-decoration: none;width:90%;}
+#divAlert{display: none;}
+.divBgAlert{width:100%;height: 200%;position: absolute;top:0px;left: 0px;display: none;z-index: 90;background: #000;opacity: 0.5}
+.hpsCodeTrip{float: left;}
+.qrcode{-webkit-box-sizing:border-box;height:43px;line-height:43px;text-align:center;color:#fff!important;border-radius:5px;font-size:18px;display:inline-block;background:#f60;text-decoration: none;width:90%;}
+#btnMenu{right: 20px;display: block;position:fixed;bottom: 20px;opacity:0.4;}
+.btnMenuBody{width:150px;display:block;position:fixed;background: #EEE;bottom: 50px;right: 50px;border-radius: 8px 8px 0px 8px;border: 1px solid #bbb;display: none;}
+.btnMenuBody ul li{line-height: 50px;font-size: 22px;text-align: center;width: 100%;}
+.btnMenuBody ul li.bdr{border-bottom: 1px solid #ccc;}
+.btnMenu{height:30px;width:30px;}
+.btnMenu:before{content:'';height:14px;width:14px;background:#333;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;display:block;position:absolute;top:0;left:0px;box-shadow:16px 0 0 #333, 0 16px 0 #333, 16px 16px 0 #333;-webkit-box-shadow:16px 0 0 #333, 0 16px 0 #333, 16px 16px 0 #333;-moz-box-shadow:16px 0 0 #333, 0 16px 0 #333, 16px 16px 0 #333;}

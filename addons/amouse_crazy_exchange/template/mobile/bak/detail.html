@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no">
+    <title>积分兑换详情</title>
+    <link rel="stylesheet" type="text/css" href="{RES}shop/reset.css">
+    <link rel="stylesheet" type="text/css" href="{RES}shop/media50px.min.css">
+    <link rel="stylesheet" type="text/css" href="{RES}shop/style.css">
+    <script type="text/javascript" src="{RES}js/jquery.js"></script>
+    <script type="text/javascript" src="{RES}js/layer.m.js"></script>
+</head>
+
+<body style="background:#f3f6f5;">
+<div class="item-hd"><!--http://3468666.com:1111/shop/images/pic_026.png -->
+    <a href="javascript:history.back();" class="backbtn"><img src="{RES}images/pic_026.png" /></a>
+    <h4>积分兑换详情</h4>
+</div>
+<div class="item-pic">
+    <img src="{php echo strpos($goods['thumb'],'http://')===FALSE?(tomedia($goods['thumb'])):$goods['thumb']}" />
+    <h5><span>{$goods['title']}</span></h5>
+</div>
+
+<div class="item-info"><span>{$goods['credit']}</span></div>
+
+<div class="item-main">
+    {$goods['detail']}
+</div>
+
+<div class="item-ft">
+    {if $mycredit<$goods['credit']}
+    <a class="button btn" id="btn_exchange">立即兑换</a>
+    {else}
+    <a href="javascript:;" style="background: #989496;">积分不足</a>
+    {/if}
+</div>
+
+<!-- 请输入您的收货地址 -->
+<div class="dialog" id="shdzDialog">
+	<div class="dialog-box">
+		<a href="javascript:;" class="closebtn" onclick="layer.closeAll();">X</a>
+		<h4>请输入您的收货地址</h4>
+        <form method="post" id="form_input">
+            <input type="hidden" name="gid" value="{$goods['id']}">
+        <ul class="clearfix">
+			<li><span><input class="name" name="name" id="name" type="text" placeholder="请输入收件人姓名"></span></li>
+			<li><span><input class="phone" name="phone" id="phone" type="number" placeholder="请输入收件人手机号码"></span></li>
+			<!--<li><span><select class="shengfen" name="location_p" id="location_p"><option>请选择省份</option><option>福建</option></select></span></li>
+			<li><span><select class="chengshi" name="location_c" id="location_c"><option>请选择市</option><option>厦门</option></select></span></li>
+			<li><span><select class="quxianshi" id="location_a" name="location_a"></select></span></li>-->
+			<li><span><input class="addr" name="addr" id="addr" type="text" placeholder="请输入收件人详细地址"></span></li>
+		</ul>
+        <!--<script type="text/javascript" src="{RES}js/region_select.js"></script>
+        <script type="text/javascript">
+            var location_p = "{if !empty($fans['location_p'])}{$fans['location_p']}{/if}";
+            var location_c = "{if !empty($fans['location_c'])}{$fans['location_c']}{/if}";
+            var location_a = "{if !empty($fans['location_a'])}{$fans['location_a']}{/if}";
+            new PCAS("location_p", "location_c", "location_a", location_p, location_c, location_a);
+        </script>-->
+		<a class="ljdhbtn" id="doAjaxExchage">立即兑换</a>
+            </form>
+	</div>
+</div>
+<script>
+    //触屏--------------------------
+    var touchPageYStart = 0;
+    try{
+        if($.isFunction(eval(etouch))){
+            var touch = etouch;
+        }
+    }catch(e){
+        var touch = function (event){
+            var event = event || window.event;
+            var eot = event.touches[0];
+            switch(event.type){
+                case "touchstart":
+                    touchPageYStart = eot.clientY;
+                    break;
+                case "touchend":
+                    break;
+                case "touchmove":
+                    var stTmp = $("body").scrollTop();
+                    $("body").scrollTop(stTmp + (touchPageYStart - eot.clientY));
+                    touchPageYStart = eot.clientY;
+                    event.preventDefault();
+                    break;
+            }
+        }
+    }
+    document.addEventListener('touchstart',touch, false);
+    document.addEventListener('touchend',touch, false);
+    document.addEventListener('touchmove',touch, false);
+    function onBridgeReady(){
+        WeixinJSBridge.call('hideOptionMenu');
+    }
+
+    if (typeof WeixinJSBridge == "undefined"){
+        if( document.addEventListener ){
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        }else if (document.attachEvent){
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    }else{
+        onBridgeReady();
+    }
+
+    $('#btn_exchange').click(function(){
+        layer.open({
+            type: 1,
+            content:$("#shdzDialog").html(),
+            style: 'background:none; padding:0;',
+            shadeClose: false,
+        });
+    });
+
+
+
+</script>
+</body>
+<script>
+
+    $("#doAjaxExchage").click(function(){
+        console.log("doAjaxExchage") ;
+        var data = $('#form_input').serialize();
+        if($('#name').val().length < 1){
+            alert('请输入收件人姓名。');
+            return false;
+        }
+        if($('#phone').val().length < 1){
+            alert('请输入收件人手机号码。');
+            return false;
+        }
+        if($('#addr').val().length < 1){
+            alert('请设置收货地址。');
+            return false;
+        }
+        var getUrl = "{php echo $this->createMobileUrl('ajaxExchangeDo',array('mid'=>pencode($fansid)),true)}&_=" + Math.random();
+        var credit="{$goods['credit']}";
+        if (confirm("是否兑换（兑换需要消耗"+credit+"个积分）？")) {
+            $.post(getUrl, data, function (res) {
+                if (res.code == 200) {
+                    layer.open({
+                        type: 1,
+                        content:"兑换成功",
+                        style: 'background:none; padding:0;',
+                        shadeClose: false,
+                    });
+                    layer.closeAll();
+                } else {
+                    layer.open({
+                        type: 1,
+                        content:res.msg,
+                        style: 'background:none; padding:0;',
+                        shadeClose: false,
+                    });
+                }
+            }, 'json');
+            return false;
+        }
+
+    });
+
+</script>
+</html>

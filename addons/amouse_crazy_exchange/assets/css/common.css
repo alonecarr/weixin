@@ -1,0 +1,142 @@
+html,body {
+    -webkit-touch-callout:none;
+    -webkit-text-size-adjust:none;
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+    -webkit-user-select:none;
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family: Microsoft YaHei,Sans-serif;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #000;
+    background-color: #fffaf5;
+    outline: 0;
+    font-size:14px;
+    overflow: scroll;
+}
+html,body,header,section,footer,div,ul,ol,li,img,a,span,em,del,legend,center,strong,var,fieldset,form,label,dl,dt,dd,cite,input,hr,time,mark,code,figcaption,figure,textarea,h1,h2,h3,h4,h5,h6,p{
+    margin:0;
+    border:0;
+    padding:0;
+    font-style:normal;
+}
+ul, li {
+    list-style: none;
+}
+img {
+    border: 0;
+}
+a {
+    text-decoration: none;
+    background-color: transparent;
+}
+footer{
+    height:63px;
+}
+
+/**澶撮儴鏍峰紡 start**/
+#header{
+    position: relative;
+    width: 100%;
+    height: 100px;
+}
+#header_oval {
+    position: absolute;
+    top:-60px;
+    width: 100%;
+    height: 150px;
+    background: #9966CC;
+    -moz-border-radius: 200px / 60px;
+    -webkit-border-radius: 200px / 60px;
+    border-radius: 200px / 60px;
+}
+#header_memb{
+    position: absolute;
+    top:30px;
+    left:15px;
+    color: #FFF;
+    font-size:12px;
+}
+#header_title{
+    position: absolute;
+    left:50%;
+    top:40px;
+    margin-left: -70px;
+    width:140px;
+    text-align: center;
+    color: #ffffd8;
+}
+#header_title_small{
+    font-size: 12px;
+    line-height: 12px;
+    color: #fffaf5;
+}
+/**澶撮儴鏍峰紡 end**/
+/**搴曢儴鏍峰紡 start**/
+.div-bottom-content{ position:fixed; width:100%; left:0; bottom:0; background:#333333; height:0.7rem; line-height:0.7rem; z-index:1000;
+}
+.footer{position:fixed; width:100%; left:0; bottom:0; background:#333333; height:0.7rem; line-height:0.7rem; z-index:1000;}
+.footer ul li{ float:left; width:20%; text-align:center;}
+.footer ul li a{ display:block; border-left:1px solid #969696; color:#ffffff; font-size:0.29rem;}
+.footer ul li:nth-child(1) a{border-left:none;}
+.footer ul li a.on{color:#ffea5f;}
+.ul-li-item{
+    float: left;
+    width:25%;
+    display: inline-block;
+    text-align: center;
+    line-height:50px;
+}
+.ul-li-item a{
+    display: inline-block;
+    font-size: 16px;
+    color: #eee;
+    background: transparent;
+    width:auto;
+    /*line-height:35px;*/
+    /*border-radius: 5px;*/
+    margin:0;
+}
+/**搴曢儴鏍峰紡 end**/
+
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../fonts/glyphicons-halflings-regular.eot');
+    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.icon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-qrcode:before {
+    content: "\e039";
+}
+
+.icon-yen:before{
+    content: "\00a5";
+}
+.icon-heart-empty:before {
+    content: "\e143";
+}
+.icon-user:before {
+    content: "\e008";
+}
+
+.icon-hand-right:before {
+    content: "\e127";
+}
+
+.icon-thumbs-up:before {
+    content: "\e125";
+}

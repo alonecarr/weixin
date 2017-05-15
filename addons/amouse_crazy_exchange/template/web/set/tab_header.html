@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs">
+    <!--<li {if $op=='tpl'}class="active"{/if}><a href="{php echo $this->createWebUrl('sysset',array('op'=>'tpl'));}">模板消息通知设置</a></li>-->
+    <li {if $op=='other'}class="active"{/if}><a href="{php echo $this->createWebUrl('sysset',array('op'=>'other'));}">其他设置</a></li>
+    <li {if $op=='pro'}class="active"{/if}><a href="{php echo $this->createWebUrl('sysset',array('op'=>'pro'));}">推广设置</a></li>
+    <li {if $op=='pay'}class="active"{/if}><a href="{php echo $this->createWebUrl('sysset',array('op'=>'pay'));}">借用支付设置</a></li>
+    <li {if $op=='redpacks'}class="active"{/if}><a href="{php echo $this->createWebUrl('sysset',array('op'=>'redpacks'));}">红包设置</a></li>
+</ul>

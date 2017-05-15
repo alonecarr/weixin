@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no">
+    <title>游戏中心</title>
+    <link rel="stylesheet" type="text/css" href="{RES}red/reset.css">
+    <link rel="stylesheet" type="text/css" href="{RES}red/media50px.min.css">
+    <link rel="stylesheet" type="text/css" href="{RES}red/animate.css">
+    <link rel="stylesheet" type="text/css" href="{RES}red/style.css">
+    <script type="text/javascript" src="{RES}js/jquery.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="header">
+    <img src="{RES}images/pic02.png"/>
+    <span>会员ID: {$fansid}</span>
+</div>
+
+<div class="zhifubox" style="position:absolute;left: 0.5rem;top:1.8rem;">
+    <img src="{RES}images/pic_03.png" class="resize" style="width:300px; height:96px;" />
+    <p class="line1 resize go5" style="line-height:80px;"><span>转赚盘</span></p>
+</div>
+
+<div class="zhifubox" id="go10" style="position:absolute;left: 0.5rem;top:3.6rem;">
+    <img src="{RES}images/pic_03.png" class="resize" style="width:300px; height:96px;" />
+    <p class="line1 resize go10" style="line-height:80px;"><span>抢红包</span></p>
+</div>
+
+<div class="qiandai" style="z-index:99;margin-top:2rem;">
+    <img src="{RES}images/pic_ck.png" class="govip bg" style="width:382px; margin-top:-100;"/>
+</div>
+
+
+{template 'footer'}
+
+<script>
+
+    $('.go5').click(function(){
+        window.location.href = "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('index',array('mid'=>pencode($fansid))), 2)}";
+    });
+
+    $('.go10').click(function(){
+        window.location.href = "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('red',array('mid'=>pencode($fansid))), 2)}";
+    });
+    $(".govip").click(function (event) {
+        location.href = "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('bonus',array('mid'=>pencode($fansid))), 2)}";
+    });
+
+</script>
+<script>
+    //触屏--------------------------
+    var touchPageYStart = 0;
+    try {
+        if ($.isFunction(eval(etouch))) {
+            var touch = etouch;
+        }
+    } catch (e) {
+        var touch = function (event) {
+            var event = event || window.event;
+            var eot = event.touches[0];
+            switch (event.type) {
+                case "touchstart":
+                    touchPageYStart = eot.clientY;
+                    break;
+                case "touchend":
+                    break;
+                case "touchmove":
+                    var stTmp = $("body").scrollTop();
+                    $("body").scrollTop(stTmp + (touchPageYStart - eot.clientY));
+                    touchPageYStart = eot.clientY;
+                    event.preventDefault();
+                    break;
+            }
+        }
+    }
+    document.addEventListener('touchstart', touch, false);
+    document.addEventListener('touchend', touch, false);
+    document.addEventListener('touchmove', touch, false);
+    function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    }
+
+    if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    } else {
+        onBridgeReady();
+    }
+</script>
+
+</body>
+</html>

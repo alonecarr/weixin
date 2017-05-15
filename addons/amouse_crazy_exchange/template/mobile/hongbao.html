@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>精彩互换精彩无限</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <script type="text/javascript" src="{RES}js/jquery.js"></script>
+    <link href="{RES}css/base.css" rel="stylesheet" type="text/css">
+    <link href="{RES}css/index.css?v=26" rel="stylesheet" type="text/css">
+    <link href="{RES}css/head.css?v=73" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{RES}css/animate.css">
+    <script type="text/javascript" src="{RES}js/layer.m.js"></script>
+    <link rel="stylesheet" href="{RES}css/weui.css"/>
+
+    <style>
+        .dialog-box{display:none;}
+        .jiang-page{width:12.14rem; position:relative;}
+        .jiang-page .closebtn{position:absolute; top:0; right:0.55rem; width:1.38rem; height:1.38rem; display:block; z-index:100;}
+        .jiang-page .closebtn img{ width:1.38rem; height:1.38rem; display:block;}
+        .jiang-page .jiang-txt{ position:relative;}
+        .jiang-page .jiang-txt img{ width:100%; display:block;}
+        .jiang-page .jiang-txt h4{position:absolute; text-align:center; width:100%; top:1.25rem; left:0; color:#ee4530; font-size:0.5rem;}
+        .jiang-page .jiang-txt h4 em{font-size:0.35rem;}
+        .jiang-page .jiang-txt span{position:absolute; text-align:center; width:100%; top:2.1rem; left:0; display:block; color:#ee4530; font-size:0.27rem; letter-spacing:0.05rem;}
+        .jiang-page .jiang-note{ background-size:5.1rem 0.66rem; width:5.1rem; height:2.66rem; text-align:center; color:#f89d04; margin:auto; font-size:0.25rem; line-height:0.6rem; letter-spacing:0.05rem; margin-top:-0.6rem; position:relative; z-index:10;}
+        .jiang-page p{text-align:center; color:#fcc707; font-size:0.25rem; margin:0.15rem 0;}
+        .jiang-page a.backbtn{ display:block; margin:auto; width:2.6rem; height:0.76rem;}
+        .jiang-page a.backbtn img{ display:block; width:2.6rem; height:0.76rem;}
+    </style>
+
+</head>
+<body>
+<section class="container">
+    <div class="container-hd">
+        <figrue class="figure"><img src="{RES}images/banner-index.jpg" alt=""/></figrue>
+        <div class="container-hd_text"><i class="i i-text i-text_left"></i> <i class="i i-text i-text_right"></i></div>
+        <i class="i-lantern i-lantern_left"></i> <i class="i-lantern i-lantern_right"></i>
+        <div class="fireworks"><i class="i-firework"></i> <i class="i-firework"></i></div>
+        <i class="i i-character bounceIn floatUpDown"></i></div>
+</section>
+<div class="hb4" id="hb4">
+    <ul>
+        <li>恭喜玩家101抽到11.96元</li>
+        <li>恭喜玩家301抽到14.96元</li>
+        <li>恭喜玩家0110抽到19.96元</li>
+        <li>恭喜玩家庙口大王抽到2.57元</li>
+        <li>恭喜玩家陈抽到11.02元</li>
+        <li>恭喜玩家陈抽到3.06元</li>
+        <li>恭喜玩家陈抽到12.32元</li>
+        <li>恭喜玩家陈抽到4.62元</li>
+        <li>恭喜玩家顽童抽到11.96元</li>
+        <li>恭喜玩家顽童抽到3.32元</li>
+    </ul>
+</div>
+
+<div class="hb1 clearfix">
+    <p>红包列表</p>
+    <ul>
+        {loop $ms $m}
+        <li>{$m['max_money']}</li>
+        {/loop}
+    </ul>
+</div>
+<div class="hb2">
+    <ul>
+
+        <li style="width:33.3%">
+            <a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="0">
+                <img src="{RES}images/4.gif" class="chai"> <img src="{RES}images/5.png" class="xian" ></a>
+        </li>
+
+        <li style="width:33.3%">
+            <a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="1">
+                <img src="{RES}images/4.gif" class="chai"> <img
+                src="{RES}images/5.png" class="xian">
+            </a>
+
+        </li>
+        <li style="width:33.3%"><a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="2">
+            <img src="{RES}images/4.gif" class="chai"> <img
+                src="{RES}images/5.png" class="xian"></a>
+
+        </li>
+        <li style="width:33.3%">
+            <a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="3">
+                <img src="{RES}images/4.gif" class="chai"> <img
+                src="{RES}images/5.png" class="xian"></a>
+        </li>
+        <li style="width:33.3%"><a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="4">
+            <img src="{RES}images/4.gif" class="chai"> <img
+                src="{RES}images/5.png" class="xian"></a>
+        </li>
+        <li style="width:33.3%">
+            <a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="5">
+                <img src="{RES}images/4.gif" class="chai"> <img
+                src="{RES}images/5.png" class="xian"></a>
+        </li>
+        <li style="width:33.3%">
+            <a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="6">
+                <img src="{RES}images/4.gif" class="chai"> <img
+                src="{RES}images/5.png" class="xian"></a>
+        </li>
+        <li style="width:33.3%"><a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="7">
+            <img src="{RES}images/4.gif" class="chai"> <img
+                src="{RES}images/5.png" class="xian"></a>
+        </li>
+        <li style="width:33.3%"><a href="javascript:;" class="chaiitem resize" style="height:70px;" hid="8"><img src="{RES}images/4.gif" class="chai"> <img
+                src="{RES}images/5.png" class="xian"></a>
+        </li>
+
+    </ul>
+</div>
+﻿
+<script>
+    $(document).ready(function () {
+
+        $('.msgbox .but').click(function () {
+            $('.msgbox').hide();
+        });
+    });
+</script>
+
+<div class="msgbox">
+    <div class="box">
+        <p class="title">提示</p>
+        <p class="txt">恭喜您获得0元红包</p>
+        <p class="but">确定</p>
+    </div>
+</div>
+<div class="dialog-box" id="zjtsDialog">
+    <div class="jiang-page">
+        <a class="closebtn" onclick="thisclose();" ><img src="{RES}images/close.png"/></a>
+        <div class="jiang-txt">
+            <img src="{RES}images/pic_122.png" />
+            <h4 class="hpsOpenMoney"><em>元</em></h4>
+            <span>赢红包</span>
+        </div>
+        <div class="jiang-note">红包已放入您的裤裆</div>
+        <a class="backbtn" style="margin-top:2.2rem;"
+           href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('gotopay',array('gid'=>$rsetdata['id'],'mid'=>pencode($fansid))), 2)}">
+            <img src="{RES}images/pic_09.png" />
+        </a>
+    </div>
+</div>
+
+
+<div style="height:60px;"></div>
+<script>
+    var act_hid = 0;
+    var ary_list = [];
+    var rid =0;
+    var nid =0;
+    var hid = 0;
+    var page = 1;
+    var goStatus = 0;
+    $(".chaiitem").bind("click",function(){
+        act_hid = $(this).attr("hid");
+        act_hid = parseInt(act_hid);
+        console.log(act_hid);
+        $(this).find("img").addClass("rotate");
+        $(".chaiitem").unbind("click");
+        var obj = $(this);
+        var url ="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('redchai',array('fansid'=>$fansid,'hid'=>$rsetdata['id'])), 2)}";
+
+        $.ajax({
+            url: url,
+            dataType: "json",
+            data: {
+                t: Math.random()
+            },
+            success: function (data) {
+                console.log(data);
+                if(data.code == 1 && data.hpsMoney > 0){
+                    var ii = 0;
+                    $(".chaiitem").each(function(i){
+                        if(i == act_hid){
+                            var h = $(this).find('p').text();
+                            var p = $(this);
+                            $(".hpsOpenMoney").html(data.hpsMoney+"元");
+                           /* p.css('height', p.height());
+                            p.empty();*/
+                           /* $('.msgbox .txt').text('恭喜您获得 ' + data.hpsMoney + ' 元!');
+                            $('.msgbox').show();*/
+                            layer.open({
+                             type: 1,
+                             content:$("#zjtsDialog").html(),
+                             style: 'background:none; padding:0;',
+                             shadeClose: false,
+                             });
+                        }
+                        $(this).find(".chaihb").hide();
+                        $(this).find(".chaitxt").fadeIn();
+                    })
+
+                }else{
+                    $(".weui_dialog_bd").html(data.msg);
+                    $(".weui_dialog_alert").show();
+                }
+            },
+            error: function (res) {
+                console.log(res);
+            }
+        });
+    });
+    function thisclose(){
+        layer.closeAll();
+        location.reload();
+    }
+
+
+    function scrollNews(selector,Entry,time,StartIndex){
+        var _self=this;
+        this.selector=selector;
+        this.Entry=Entry;
+        this.time = time;
+        this.i=StartIndex||0;
+        this.Count=$(this.selector+" ul li").length;
+        $(this.selector+" ul li").hide();//全部隐藏
+        $(this.selector+" ul li").eq(this.i).show();//第i个显示
+        $(this.selector).bind("mouseenter",function(){
+            if(_self.sI){clearInterval(_self.sI);}
+        }).bind("mouseleave",function(){
+            _self.showIndex(_self.i++);
+        })
+        /*生成激活OL项目*/
+        for(var j=0;j<this.Count;j++)
+            $(this.selector+" .activeOL").append('<li><a onclick="'+this.Entry+'.showIndex('+j+');" href="#"><img src="images/crystal.gif"></a></li>');
+        $(this.selector+" ol li a").eq(this.i).addClass("active");
+        this.sI=setInterval(this.Entry+".showIndex(null)",this.time);
+
+        this.Getselector=function(){return this.selector;}
+        this.showIndex=function(index) {
+            this.i++;//显示下一个
+            if(this.sI){clearInterval(this.sI);}
+            this.sI=setInterval(this.Entry+".showIndex()",this.time);
+            if (index!=null)
+            {
+                this.i=index;
+            }
+            if(this.i==this.Count)
+                this.i=0;
+            $(this.selector+" ul li").hide();
+            $(this.selector+" ul li").eq(this.i).slideDown();
+            $(this.selector+" ol li a").removeClass("active");
+            $(this.selector+" ol li a").eq(this.i).addClass("active");
+        }
+    }
+    var s=new scrollNews("#hb4","s", 2000 , 1);
+
+</script>
+<div class="weui_dialog_alert" style="display:none;">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title">提 示</strong></div>
+        <div class="weui_dialog_bd"></div>
+        <div class="weui_dialog_ft">
+            <a href="javascript:;" class="weui_btn_dialog primary">确定</a>
+        </div>
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(".weui_btn_dialog").click(function(){
+        $(".weui_dialog_alert").hide();
+        location.reload();
+    });
+</script>
+{template 'footer'}
+
+
+</body>
+</html>
