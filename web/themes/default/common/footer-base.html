@@ -1,0 +1,18 @@
+	<script type="text/javascript">
+		require(['bootstrap']);
+		$('.js-clip').each(function(){
+			util.clip(this, $(this).attr('data-url'));
+		});
+	</script>
+	<div class="container-fluid footer" role="footer">
+		<div class="page-header"></div>
+		<span class="pull-left">
+			<p>{if empty($_W['setting']['copyright']['footerleft'])}Powered by <a href="http://www.工作室.com"><b>工作室CMS</b></a>&nbsp; &nbsp; V{IMS_VERSION} &copy; 2014-2015 &nbsp; &nbsp; <a href="http://www.工作室.com">www.工作室.com</a>{else}{$_W['setting']['copyright']['footerleft']}{/if}</p>
+		</span>
+		<span class="pull-right">
+			<p>{if empty($_W['setting']['copyright']['footerright'])}<a href="http://www.工作室.com">关于工作室</a>&nbsp; &nbsp; <a href="http://bbs.012wz.com">工作室帮助</a>{else}{$_W['setting']['copyright']['footerright']}{/if}{if !empty($_W['setting']['copyright']['statcode'])}&nbsp; &nbsp; {$_W['setting']['copyright']['statcode']}{/if}</p>
+		</span>
+	</div>
+	{if !empty($_W['setting']['copyright']['statcode'])}{$_W['setting']['copyright']['statcode']}{/if}
+</body>
+</html>
